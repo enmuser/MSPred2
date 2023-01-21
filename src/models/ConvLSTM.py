@@ -27,20 +27,20 @@ class ConvLSTMCell(nn.Module):
     """
 
     def __init__(self, input_size, hidden_size, kernel_size=(3, 3), bias=True):
-        """ Module initializer """ # 1.input_size = 64, hidden_size = 64, kernel_size=(3, 3)
+        """ Module initializer """ # 1.input_size = 64, hidden_size = 64, kernel_size=(3, 3) //// predictor: 1.input_size = 128, hidden_size = 128, kernel_size=(3, 3)
         kernel_size = (kernel_size, kernel_size) if isinstance(kernel_size, int) else kernel_size # kernel_size=(3, 3)
         assert len(kernel_size) == 2, f"Kernel size {kernel_size} has wrong shape"
         super().__init__()
-        self.input_size = input_size # input_size = [64,64,64]
-        self.hidden_size = hidden_size # hidden_size = [64,64,64]
+        self.input_size = input_size # input_size = [64,64,64] //// predictor: input_size = [128,128,128,128]
+        self.hidden_size = hidden_size # hidden_size = [64,64,64] ////  predictor: hidden_size = [128,128,128,128]
 
         self.kernel_size = kernel_size # kernel_size=(3, 3)
         self.padding = kernel_size[0] // 2, kernel_size[1] // 2 # padding = (1,1)
         self.bias = bias # True
 
         self.conv = nn.Conv2d( #
-                in_channels=self.input_size + self.hidden_size, # in_channels = [64,64,64] + [64,64,64] = [128,128,128]
-                out_channels=4 * self.hidden_size,# out_channels = 4 * [64,64,64] = [256,256,256]
+                in_channels=self.input_size + self.hidden_size, # in_channels = [64,64,64] + [64,64,64] = [128,128,128] //// predictor: in_channels = [128,128,128,128] + [128,128,128,128] = [256,256,256,256]
+                out_channels=4 * self.hidden_size,# out_channels = 256 //// predictor: out_channels = 4 * [128,128,128,128] = [512,512,512,512]
                 kernel_size=self.kernel_size,# kernel_size=(3, 3)
                 padding=self.padding,# padding = (1,1)
                 bias=self.bias# True
@@ -50,7 +50,7 @@ class ConvLSTMCell(nn.Module):
         return
 
     def forward(self, x, state=None):
-        """
+        """ x: 16 * 64 * 4 * 4 //// x = 16 * 128 * 16 * 16
         Forward pass of an input through the ConvLSTM cell
 
         Args:
@@ -63,13 +63,13 @@ class ConvLSTMCell(nn.Module):
         if state is None:
             state = self.init_hidden(batch_size=x.shape[0], input_size=x.shape[-2:])
         hidden_state, cell_state = state
-
+        # hidden_state = 16 * 64 * 4 * 4 / cell_state = 16 * 64 * 4 * 4 //// hidden_state = 16 * 128 * 16 * 16 / cell_state = 16 * 128 * 16 * 16
         # joinly computing all convs by stacking and spliting across channel dim.
-        input = torch.cat([x, hidden_state], dim=1)
-        out_conv = self.conv(input)
-        cc_i, cc_f, cc_o, cc_g = torch.split(out_conv, self.hidden_size, dim=1)
-
-        # computing input, forget, update and output gates
+        input = torch.cat([x, hidden_state], dim=1) # => 16 * 128 * 4 * 4 //// =>  16 * 256 * 16 * 16
+        out_conv = self.conv(input) # out_conv = 16 * 256 * 4 * 4 <= 16 * 128 * 4 * 4 ////  out_conv = 16 * 512 * 16 * 16 <= 16 * 256 * 16 * 16
+        cc_i, cc_f, cc_o, cc_g = torch.split(out_conv, self.hidden_size, dim=1) # 一分为四 #
+        # cc_i, cc_f, cc_o, cc_g = 16 * 64 * 4 * 4，16 * 64 * 4 * 4，16 * 64 * 4 * 4，16 * 64 * 4 * 4
+        # computing input, forget, update and output gates  # cc_i, cc_f, cc_o, cc_g = 16 * 128 * 16 * 16，16 * 128 * 16 * 16，16 * 128 * 16 * 16，16 * 128 * 16 * 16
         i = torch.sigmoid(cc_i)
         f = torch.sigmoid(cc_f)
         o = torch.sigmoid(cc_o)
@@ -78,14 +78,14 @@ class ConvLSTMCell(nn.Module):
         # updating hidden and cell state
         updated_cell_state = f * cell_state + i * g
         updated_hidden_state = o * torch.tanh(updated_cell_state)
-        return updated_hidden_state, updated_cell_state
+        return updated_hidden_state, updated_cell_state # [16 * 64 * 4 * 4,16 * 64 * 4 * 4] //// [16 * 128 * 16 * 16,16 * 128 * 16 * 16]
 
     def init_hidden(self, batch_size, input_size, device):
         """ Initializing the hidden state of the cell """
-        height, width = input_size
+        height, width = input_size # input_size = (16,16), batch_size = 16, hidden_size = 128
         state = (Variable(torch.zeros(batch_size, self.hidden_size, height, width, device=device)),
                  Variable(torch.zeros(batch_size, self.hidden_size, height, width, device=device)))
-        return state
+        return state # ((16,128,16,16),(16,128,16,16)) // ((16,128,8,8),(16,128,8,8)) //  ((16,128,4,4),(16,128,4,4)) //// prior/post: ((16,64,16,16),(16,64,16,16)) // ((16,64,8,8),(16,64,8,8)) //  ((16,64,4,4),(16,64,4,4))
 
 
 class ConvRnnModels(nn.Module):
@@ -102,28 +102,28 @@ class ConvRnnModels(nn.Module):
         Number of channels of the output of the ConvLSTM
     num_layers: int
         number of ConvLSTM cells to appy
-    kernel_size: int or tuple
-        Size of the convolutional kernel.
-    bias: bool
-        Whether or not to add the bias.
+    kernel_size: int or tuple             # predictor
+        Size of the convolutional kernel. # 1.input_size=138, hidden_size=128, output_size=128, num_layers=4, kernel_size=(3, 3),{'period': 1, 'use_output': True}
+    bias: bool                            # 2.input_size=266, hidden_size=128, output_size=256, num_layers=4, kernel_size=(3, 3),{'period': 4, 'use_output': True}
+        Whether or not to add the bias.   # 3.input_size=522, hidden_size=128, output_size=512, num_layers=4, kernel_size=(3, 3),{'period': 8, 'use_output': True}
     get_all: bool
         If True, returns the output of all layers
     """
 
     def __init__(self, input_size, hidden_size, output_size, num_layers, kernel_size=(3, 3),
-                 bias=True, get_all=True, **kwargs):
-        """ Module initializer """ # 1. input_size = 148,hidden_size = 64, output_size = 10,num_layers=1,kernel_size=(3, 3),kwargs={'period': 1}
-        super().__init__()         # 2. input_size = 266,hidden_size = 64, output_size = 10,num_layers=1,kernel_size=(3, 3),kwargs={'period': 4}
+                 bias=True, get_all=True, **kwargs):  # 1. input_size = 148,hidden_size = 64, output_size = 10,num_layers=1,kernel_size=(3, 3),kwargs={'period': 1}
+        """ Module initializer """                    # 2. input_size = 266,hidden_size = 64, output_size = 10,num_layers=1,kernel_size=(3, 3),kwargs={'period': 4}
+        super().__init__()                            # 3. input_size = 512,hidden_size = 64, output_size = 10,num_layers=1,kernel_size=(3, 3),kwargs={'period': 8}
         self.input_size = input_size # input_size = [148,266,512]
         self.num_layers = num_layers # num_layers = 1
-        self.kernel_size = self._check_kernel_size_consistency(kernel_size, num_layers) #kernel_size=(3, 3) => [(3,3)]
-        self.hidden_size = self._extend_for_multilayer(hidden_size, num_layers) # hidden_size=64 => [64]
+        self.kernel_size = self._check_kernel_size_consistency(kernel_size, num_layers) #kernel_size=(3, 3) => [(3,3)] //// predictor=[(3,3),(3,3),(3,3),(3,3)]
+        self.hidden_size = self._extend_for_multilayer(hidden_size, num_layers) # hidden_size=64 => [64] //// predictor=[128,128,128,128]
         self.get_all = get_all # True
         self.bias = bias # True
 
         # firing frequency parameters
         self.last_output = None
-        self.period = kwargs.get("period", 1) # period = [1,4,8]
+        self.period = kwargs.get("period", 1) # period = [1,4,8] //// predictor= [1,4,8]
         self.counter = 0
 
         self.hidden = None
@@ -187,22 +187,22 @@ class ConvLSTM(ConvRnnModels):
     """
 
     def __init__(self, input_size, hidden_size, output_size, num_layers, kernel_size=(3, 3), **kwargs):
-        """ ConvLSTM module initializer """
-        super().__init__(input_size=input_size, hidden_size=hidden_size, output_size=output_size,
+        """ ConvLSTM module initializer """ # predictor: 1.input_size=138, hidden_size=128, output_size=128, num_layers=4, kernel_size=(3, 3),{'period': 1, 'use_output': True}
+        super().__init__(input_size=input_size, hidden_size=hidden_size, output_size=output_size,  # predictor: 1.input_size=266, hidden_size=128, output_size=256, num_layers=4, kernel_size=(3, 3),{'period': 4, 'use_output': True}
                          num_layers=num_layers, kernel_size=kernel_size, **kwargs)
         cell_list = []
-        for i in range(0, self.num_layers):
-            cur_input_size = self.hidden_size[0] if i == 0 else self.hidden_size[i - 1]
+        for i in range(0, self.num_layers): # num_layers = 4 ,[0,1,2,3]
+            cur_input_size = self.hidden_size[0] if i == 0 else self.hidden_size[i - 1]# predictor:  hidden_size =[128, 128, 128, 128] => cur_input_size = 128
             cell_list.append(ConvLSTMCell(
-                    input_size=cur_input_size,
-                    hidden_size=self.hidden_size[i],
-                    kernel_size=self.kernel_size[i],
-                    bias=self.bias
+                    input_size=cur_input_size, # cur_input_size = 128
+                    hidden_size=self.hidden_size[i], # hidden_size = [128,128,128,128]
+                    kernel_size=self.kernel_size[i], # kernel_size = [(3,3),(3,3),(3,3),(3,3)]
+                    bias=self.bias # True
                 )
-            )
+            ) # input_size = 138, hidden_size = 128, kernel_size = (3,3)//input_size = 266, hidden_size = 128, kernel_size = (3,3)//input_size=522, hidden_size = 128, kernel_size = (3,3)
         self.input_conv = nn.Conv2d(self.input_size, self.hidden_size[0], kernel_size=kernel_size, padding=1)
         self.cell_list = nn.ModuleList(cell_list)
-        self.out_proj = nn.Sequential(
+        self.out_proj = nn.Sequential( # hidden_size = 128, output_size = [128,256,512]
                 nn.Conv2d(in_channels=hidden_size, out_channels=output_size, kernel_size=3, padding=1),
                 nn.Tanh()
             )
@@ -228,18 +228,18 @@ class ConvLSTM(ConvRnnModels):
         should_fire = self.check_counters()
         if (not should_fire):
             return self.last_output
-        B, C, H, W = x.shape
+        B, C, H, W = x.shape # 16 * 138 * 16 * 16 //// 16 * 266 * 8 * 8
         if self.hidden is None:
             _ = self.init_hidden(batch_size=B, input_size=(H, W))
 
-        cur_input = self.input_conv(x)
-        # iterating through layers
+        cur_input = self.input_conv(x) # 16 * 138 * 16 * 16 => 16 * 128 * 16 * 16
+        # iterating through layers # 16 * 266 * 8 * 8 => 16 * 128 * 8 * 8
         for i in range(self.num_layers):
             self.hidden[i] = self.cell_list[i](x=cur_input, state=self.hidden[i])
             cur_input = self.hidden[i][0]  # cur layer output is next layer input
 
-        output = self.out_proj(cur_input)
-        self.last_output = output
+        output = self.out_proj(cur_input) # 16 * 128 * 16 * 16
+        self.last_output = output # 16 * 128 * 16 * 16
         return output
 
 
@@ -273,7 +273,7 @@ class GaussianConvLSTM(ConvRnnModels):
                 )
             )
         self.cell_list = nn.ModuleList(cell_list)
-        self.input_conv = nn.Conv2d(self.input_size, self.hidden_size[0], kernel_size=kernel_size, padding=1) # 148,64,(3,3),1 || 266,64,(3,3) || 512,64,(3,3)
+        self.input_conv = nn.Conv2d(self.input_size, self.hidden_size[0], kernel_size=kernel_size, padding=1) # 148,64,(3,3),1 || 266,64,(3,3),1 || 512,64,(3,3),1
         self.mu_var_net = nn.Conv2d(self.hidden_size[-1], output_size * 2, kernel_size=kernel_size, padding=1)# 64,20,(3,3),1 || 64,20,(3,3),1 || 64,20,(3,3),1
         return
 
@@ -285,7 +285,7 @@ class GaussianConvLSTM(ConvRnnModels):
         return z
 
     def forward(self, x):
-        """
+        """ x : 1. 16 * 512 * 4 * 4
         Forward pass through GaussianConvLSTM #通过 Gaussian ConvLSTM 前向传递
 
         Args:
@@ -304,23 +304,23 @@ class GaussianConvLSTM(ConvRnnModels):
         if (not should_fire):
             return self.last_output, should_fire
 
-        B, C, H, W = x.shape
-        if self.hidden is None:
+        B, C, H, W = x.shape # 16 * 512 * 4 * 4 //// 16 * 266 * 8 * 8 //// 16 * 148 * 16 * 16
+        if self.hidden is None: # hidden = [((16 * 64 * 4 * 4),(16 * 64 * 4 * 4))]
             _ = self.init_hidden(batch_size=B, input_size=(H, W))
 
         # iterating through recurrent layers
-        cur_input = self.input_conv(x) # 16 * 64 * 4 * 4
+        cur_input = self.input_conv(x) #  16 * 512 * 4 * 4 => 16 * 64 * 4 * 4 ////  16 * 266 * 8 * 8 =>  16 * 64 * 8 * 8 //// 16 * 148 * 16 * 16 => 16 * 64 * 16 * 16
         for i in range(self.num_layers):
             self.hidden[i] = self.cell_list[i](x=cur_input, state=self.hidden[i])
             cur_input = self.hidden[i][0]  # cur layer output is next layer input
-        out_lstm = cur_input
+        out_lstm = cur_input # 16 * 64 * 4 * 4
 
-        # computing stats with corresponding layer chunking, and obtaining latent tensor
-        stats = self.mu_var_net(out_lstm)
-        mu, logvar = torch.chunk(stats, chunks=2, dim=1)
-        latent = self.reparameterize(mu, logvar)
+        # computing stats with corresponding layer chunking, and obtaining latent tensor # 用相应的层分块计算统计数据，并获得潜在张量
+        stats = self.mu_var_net(out_lstm) # 16 * 64 * 4 * 4 => 16 * 20 * 4 * 4 //// 16 * 64 * 8 * 8 => 16 * 20 * 8 * 8 //// 16 * 64 * 16 * 16 => 16 * 20 * 16 * 16
+        mu, logvar = torch.chunk(stats, chunks=2, dim=1) # mu = 16 * 10 * 4 * 4, logvar =  16 * 10 * 4 * 4 //// mu = 16 * 10 * 8 * 8, logvar =  16 * 10 * 8 * 8
+        latent = self.reparameterize(mu, logvar) # latent = 16 * 10 * 4 * 4 ////   latent = 16 * 10 * 8 * 8
 
-        self.last_output = (latent, mu, logvar)
-        return (latent, mu, logvar), should_fire
+        self.last_output = (latent, mu, logvar) #  last_output = (16 * 10 * 4 * 4,16 * 10 * 4 * 4,16 * 10 * 4 * 4) //// last_output = (16 * 10 * 8 * 8,16 * 10 * 8 * 8,16 * 10 * 8 * 8)
+        return (latent, mu, logvar), should_fire # (16 * 10 * 4 * 4,16 * 10 * 4 * 4,16 * 10 * 4 * 4),True ////  (16 * 10 * 8 * 8,16 * 10 * 8 * 8,16 * 10 * 8 * 8),True
 
 #

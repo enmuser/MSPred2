@@ -121,7 +121,7 @@ class WarmupStepLR:
 
 class BetaScheduler:
     """
-    Different scheduling functionalities for the scaling factor of the KL-Divergence
+    Different scheduling functionalities for the scaling factor of the KL-Divergence #KL-Divergence 缩放因子的不同调度功能
 
     Args:
     -----

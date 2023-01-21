@@ -5,6 +5,7 @@ Implementation of moving-mnist and custom-moving-mnist datasets
 import os
 import numpy as np
 import torch
+import cv2
 from torchvision.datasets import MNIST
 from CONFIG import CONFIG, METRIC_SETS
 from .base_dataset import SequenceDataset
@@ -164,6 +165,13 @@ class CustomMovingMNIST(SequenceDataset):
                 frame[cur_pos[0]:cur_pos[0]+digit_size, cur_pos[1]:cur_pos[1]+digit_size] += digit
             frames[i] = np.clip(frame, 0, 1)
             positions.append([(np.flip(p) + digit_size/2) / self.img_size for p in next_poses])
+        img = np.ones((64, 57 * 64, 3))
+        res_height = 64
+        res_width = 64
+        for i in range(57):
+            img[:res_height, i * res_width:(i + 1) * res_width, :] = frames[i]
+
+        cv2.imwrite("images/myimgs%d.png" % idx, (img * 255).astype(np.uint8))
         frames = torch.Tensor(frames).permute(0, 3, 1, 2)
 
         hmaps = [np.zeros((self.n_frames, self.num_digits, self.img_size, self.img_size)) for i in range(2)]

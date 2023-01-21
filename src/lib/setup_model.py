@@ -35,7 +35,7 @@ def setup_model(exp_params):
         img_size = (img_size, img_size)
     model_params["img_size"] = img_size # (64,64)
     model_name = model_params["model_type"] # 'SpatioTempHierarchConvLSTM'
-    stochastic = model_params["HierarchLSTM"]["stochastic"] #True
+    stochastic = model_params["HierarchLSTM"]["stochastic"] # stochastic = True
 
     # Loading model specific parameters and specific modules
     if (model_name == "deterministic"):

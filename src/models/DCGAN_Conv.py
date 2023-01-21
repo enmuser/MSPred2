@@ -58,15 +58,15 @@ class encoder(nn.Module):
             level = self.num_blocks - 1
         assert level in range(self.num_blocks)
         H, W = img_size
-        scale = 2**(level+1)
-        return (H//scale, W//scale)
+        scale = 2**(level+1) # level =[1,2,3] =>  scale =[4,8,16]
+        return (H//scale, W//scale) # [(16,16),(8,8),(4,4)]
 
-    def forward(self, input_):
-        h1 = self.c1(input_)
-        h2 = self.c2(h1)
-        h3 = self.c3(h2)
-        h4 = self.c4(h3)
-        return h4, [h1, h2, h3]
+    def forward(self, input_): # 16 * 3 * 64 * 64
+        h1 = self.c1(input_) # h1 = 16 * 64 * 32 * 32
+        h2 = self.c2(h1) # h2 = 16 * 128 * 16 * 16
+        h3 = self.c3(h2) # h3 = 16 * 256 * 8 * 8
+        h4 = self.c4(h3) # h4 = 16 * 512 * 4 * 4
+        return h4, [h1, h2, h3] # 16 * 512 * 4 * 4,[16 * 64 * 32 * 32,16 * 128 * 16 * 16, 16 * 256 * 8 * 8]
 
 
 class decoder(nn.Module):
@@ -88,11 +88,11 @@ class decoder(nn.Module):
         return
 
     def forward(self, input_):
-        vec, skips = input_
-        d1 = self.upc1(vec)
-        d2 = self.upc2(torch.cat([d1, skips[-1]], 1))
-        d3 = self.upc3(torch.cat([d2, skips[-2]], 1))
-        output = self.upc4(torch.cat([d3, skips[-3]], 1))
-        return output, [d1, d2, d3]
+        vec, skips = input_ # vec = 16 * 512 * 4 * 4, skips = [16 * 64 * 32 * 32, 16 * 128 * 16 * 16, 16 * 256 * 8 * 8]
+        d1 = self.upc1(vec) # d1 = 16 * 256 * 8 * 8 <= 16 * 512 * 4 * 4 d1
+        d2 = self.upc2(torch.cat([d1, skips[-1]], 1)) # d2 = 16 * 128 * 16 * 16 <= cat(16 * 256 * 8 * 8 , 16 * 256 * 8 * 8) = 16 * 512 * 8 * 8
+        d3 = self.upc3(torch.cat([d2, skips[-2]], 1)) # d3 = 16 * 64 * 32 * 32  <= cat(16 * 128 * 16 * 16, 16 * 128 * 16 * 16) = 16 * 256 * 16 * 16
+        output = self.upc4(torch.cat([d3, skips[-3]], 1)) # output = 16 * 3 * 64 * 64  <= cat(16 * 64 * 32 * 32, 16 * 64 * 32 * 32) = 16 * 128 * 32 * 32
+        return output, [d1, d2, d3] # 16 * 3 * 64 * 64,[16 * 256 * 8 * 8,16 * 128 * 16 * 16,16 * 64 * 32 * 32]
 
 #

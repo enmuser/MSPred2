@@ -56,33 +56,33 @@ class Trainer:
     def load_data(self):
         """
         Loading dataset and fitting data-loader for iterating in a batch-like fashion
-        """
+        """ # batch_size = 16 shuffle_train = True shuffle_eval = False
         batch_size = self.exp_params["training"]["batch_size"]
         shuffle_train = self.exp_params["dataset"].get("shuffle_train", True)
         shuffle_eval = self.exp_params["dataset"].get("shuffle_eval", False)
 
-        # some online updates for hierarchical models
+        # some online updates for hierarchical models # 分层模型的一些在线更新
         exp_params = copy.deepcopy(self.exp_params)
         if ("Hierarch" in self.model_name):
-            # repeating the num_preds, in case only an integer was given
+            # repeating the num_preds, in case only an integer was given 重复 num_preds，以防只给出一个整数 period=[1,4,8]
             periods = exp_params["model"]["HierarchLSTM"]["periods"]
             if not isinstance(self.exp_params["training"]["num_preds"], list):
                 num_preds = self.exp_params["training"]["num_preds"] # num_preds=5
                 self.exp_params["training"]["num_preds"] = [num_preds] * len(periods) #[5,5,5]
-            exp_params["training"]["num_preds"] = max(np.array(num_preds) * np.array(periods))
+            exp_params["training"]["num_preds"] = max(np.array(num_preds) * np.array(periods)) # 40 = 5 * 8
 
         train_set = data.load_data(exp_params=exp_params, split="train")
         valid_set = data.load_data(exp_params=exp_params, split="val")
         print_(f"  --> Number of training sequences: {len(train_set)}")
         print_(f"  --> Number of validation sequences: {len(valid_set)}")
 
-        # setting up the extra outputs
-        aux_outputs = self.exp_params["model"]["HierarchLSTM"]["aux_outputs"]
-        self.aux_outputs = ("Hierarch" in self.model_name) and aux_outputs
+        # setting up the extra outputs # 设置额外的输出
+        aux_outputs = self.exp_params["model"]["HierarchLSTM"]["aux_outputs"] # aux_outputs=True
+        self.aux_outputs = ("Hierarch" in self.model_name) and aux_outputs # True = True and True
         if aux_outputs:
-            n_hmap_channels = train_set.get_num_hmap_channels()
+            n_hmap_channels = train_set.get_num_hmap_channels() # n_hmap_channels=[1,1]
             self.exp_params["model"]["HierarchLSTM"]["n_hmap_channels"] = n_hmap_channels
-        self.dset_struct_type = train_set.get_struct_type()
+        self.dset_struct_type = train_set.get_struct_type() # dset_struct_type = 'BLOB_HEATMAP'
 
         self.train_loader = data.build_data_loader(
                 dataset=train_set,
@@ -138,9 +138,9 @@ class Trainer:
         self.beta = self.exp_params["loss"]["beta0"]
 
         # loss functions
-        self.alphas = self.exp_params["loss"]["alphas"]
+        self.alphas = self.exp_params["loss"]["alphas"] # [0.2, 0.5, 0.5]
         self.hier_losses = []
-        loss_types = self.exp_params["loss"]["reconst_losses"]
+        loss_types = self.exp_params["loss"]["reconst_losses"] # ['mse', 'mse', 'mse']
         for loss_type in loss_types:
             if loss_type not in LOSSES:
                 raise ValueError(f"Unknown loss {loss_type}. Use one of {LOSSES}")
@@ -175,16 +175,16 @@ class Trainer:
         Repearting the process validation epoch - train epoch for the
         number of epoch specified in the exp_params file.
         """
-        num_epochs = self.exp_params["training"]["num_epochs"]
-        save_frequency = self.exp_params["training"]["save_frequency"]
+        num_epochs = self.exp_params["training"]["num_epochs"] # num_epochs = 350
+        save_frequency = self.exp_params["training"]["save_frequency"] # save_frequency = 100
 
         # iterating for the desired number of epochs
         epoch = self.epoch
         for epoch in range(self.epoch, num_epochs):
             self.epoch = epoch
             log_info(message=f"Epoch {epoch}/{num_epochs}")
-            self.model.eval()
-            self.valid_epoch(epoch)
+           # self.model.eval()
+        #    self.valid_epoch(epoch)
             self.model.train()
             self.train_epoch(epoch)
 
@@ -248,23 +248,23 @@ class Trainer:
         """
         # training parameters
         tf_epochs = self.exp_params["training"]["tf_epochs"]
-        context = self.exp_params["training"]["context"]
-        num_preds = self.exp_params["training"]["num_preds"]
-        num_iters = min(self.exp_params["training"]["num_iters"], len(self.train_loader))
-        teacher_force = (epoch <= tf_epochs)
+        context = self.exp_params["training"]["context"] # context = 17
+        num_preds = self.exp_params["training"]["num_preds"] # num_preds = [5,5,5]
+        num_iters = min(self.exp_params["training"]["num_iters"], len(self.train_loader)) # num_iters = 500
+        teacher_force = (epoch <= tf_epochs) # True
 
         # initializinng losses
         epoch_losses, kl_losses = [], []
         mse_losses = defaultdict(list) if self.aux_outputs else []
 
-        # training epoch
+        # training epoch # num_iters = 500
         progress_bar = tqdm(enumerate(self.train_loader), total=num_iters)
         for i, inputs_ in progress_bar:
             iter_ = num_iters * epoch + i
 
             # forward pass
-            frames = inputs_["frames"]
-            heatmaps = inputs_["heatmaps"] if "heatmaps" in inputs_ else []
+            frames = inputs_["frames"] # 图片元数据 frames = 16 * 57 * 3 * 64 * 64
+            heatmaps = inputs_["heatmaps"] if "heatmaps" in inputs_ else [] # [16 * 57 * 1 * 64 * 64,16 * 57 * 1 * 64 * 64]
             batch_classes = inputs_["classes"] if "classes" in inputs_ else []
             frames = frames.to(self.device)
             out_dict = self.model(

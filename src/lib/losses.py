@@ -43,16 +43,16 @@ class KLLoss():
 
     def __call__(self, mu1, logvar1, mu2, logvar2):
         """
-        Computing KL-loss for a minibatch
+        Computing KL-loss for a minibatch #计算小批量的 KL 损失
 
         Args:
         -----
         mu1, mu2, logvar1, logvar2: lists
             Lists of lists containing the mean and log-variances for the prior and posterior distributions,
-            where each element is a tensor of shape (B, *latent_dim)
+            where each element is a tensor of shape (B, *latent_dim) # 包含先验分布和后验分布的均值和对数方差的列表列表，其中每个元素都是形状为 (B, *latent_dim) 的张量
         """
         if (len(mu1) > 0 and (not isinstance(mu1[0], list) or len(mu1[0]) > 0)):
-            if (isinstance(mu1[0], list)):  # HierarchModel case
+            if (isinstance(mu1[0], list)):  # HierarchModel case# True
                 mu1, logvar1 = [torch.stack(m, dim=1) for m in mu1], [torch.stack(m, dim=1) for m in logvar1]
                 mu2, logvar2 = [torch.stack(m, dim=1) for m in mu2], [torch.stack(m, dim=1) for m in logvar2]
                 loss = 0.
@@ -69,7 +69,7 @@ class KLLoss():
         return loss
 
     def _kl_loss(self, mu1, logvar1, mu2, logvar2):
-        """ Computing the KL-Divergence between two Gaussian distributions """
+        """ Computing the KL-Divergence between two Gaussian distributions """ # 计算两个高斯分布之间的 KL-散度
         sigma1 = logvar1.mul(0.5).exp()
         sigma2 = logvar2.mul(0.5).exp()
         kld = torch.log(sigma2/sigma1) + (torch.exp(logvar1) + (mu1 - mu2)**2)/(2*torch.exp(logvar2)) - 1/2

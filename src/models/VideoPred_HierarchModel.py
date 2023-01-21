@@ -35,22 +35,22 @@ class HierarchModel(models.VideoPredModel):
         self.prior = self._get_prior_post(model_key="LSTM_Prior") if self.stochastic else None
         self.predictor = self._get_predictor()
         self.aux_outputs = self.model_params["HierarchLSTM"]["aux_outputs"]
-        if self.aux_outputs:
-            self.n_hmap_channels = self.model_params["HierarchLSTM"]["n_hmap_channels"]
+        if self.aux_outputs: # True
+            self.n_hmap_channels = self.model_params["HierarchLSTM"]["n_hmap_channels"] # n_hmap_channels = [1,1]
             self.decoder_heads = self._get_decoder_heads()
         return
 
     def forward(self, x, context=4, num_preds=10, teacher_force=False, openloop=False):
-        """ Forward pass through Hierarchical models. """
-        batch_size, seq_len = x.shape[:2]
+        """ Forward pass through Hierarchical models. """ # x = 16 * 57 * 3 * 64 * 64,context = 17, num_preds = [5,5,5],
+        batch_size, seq_len = x.shape[:2]  # batch_size = 16, seq_len = 57
         if not isinstance(num_preds, list):
             num_preds = [num_preds] * self.num_hierarch
         assert seq_len >= context + num_preds[0]
 
         # initializing LSTM counters and outputs structure
-        self.init_hidden(batch_size=batch_size)
+        self.init_hidden(batch_size=batch_size) # batch_size = 16
         self.init_counter()
-        empty_lists = [[] for _ in range(self.num_hierarch)]
+        empty_lists = [[] for _ in range(self.num_hierarch)] # num_hierarch = 3
         out_dict = {"preds": {}, "target_masks": defaultdict(lambda: torch.full((seq_len,), False)),
                     "mu_post": deepcopy(empty_lists), "logvar_post": deepcopy(empty_lists),
                     "mu_prior": deepcopy(empty_lists), "logvar_prior": deepcopy(empty_lists),
@@ -61,17 +61,17 @@ class HierarchModel(models.VideoPredModel):
         pred_feats = None
 
         # autoregressive prediction loop
-        for t in range(0, seq_len-1):
-            if self.stochastic:
+        for t in range(0, seq_len-1): # seq_len = 57,(0,1,2,3,...55)
+            if self.stochastic: # True
                 # get target features for computing approx. posterior
-                target_feats = self.encoder(targets[:, t+1])
+                target_feats = self.encoder(targets[:, t+1]) # [:,1],[:,2],...[:,56] / target_feats = 16 * 512 * 4 * 4,[16 * 64 * 32 * 32,16 * 128 * 16 * 16, 16 * 256 * 8 * 8]
                 feats_dict["target"] = self._get_input_feats(*target_feats)
-
+                # feats_dict["target"]  = [16 * 128 * 16 * 16, 16 * 256 * 8 * 8,16 * 512 * 4 * 4]
             # get current input features
-            if (t < context):
+            if (t < context):# t < 17
                 enc_feats = self.encoder(inputs[:, t])
-                feats_dict["input"] = self._get_input_feats(*enc_feats)
-                feats_dict["residuals"] = self._get_residual_feats(*enc_feats)
+                feats_dict["input"] = self._get_input_feats(*enc_feats) # feats_dict["input"]  = [16 * 128 * 16 * 16, 16 * 256 * 8 * 8,16 * 512 * 4 * 4]
+                feats_dict["residuals"] = self._get_residual_feats(*enc_feats) # feats_dict["residuals"] = [16 * 64 * 32 * 32, 16 * 128 * 16 * 16, 16 * 256 * 8 * 8, 16 * 512 * 4 * 4]
             else:
                 if self.autoreg_mode == "LAST_PRED_FEATS":
                     feats_dict["input"] = pred_feats
@@ -86,12 +86,12 @@ class HierarchModel(models.VideoPredModel):
                     out_dict=out_dict,
                     cur_frame=t,
                     context=context
-                )
+                ) # pred_feats = [16 * 128 * 16 * 16,16 * 256 * 8 * 8,16 * 512 * 4 * 4]
 
-            # decoding predicted frames
-            dec_inputs = self._get_decoder_inputs(pred_feats, feats_dict["residuals"])
-            pred_output, dec_skips = self.decoder(dec_inputs)
-            if (t >= context-1):
+            # decoding predicted frames # 解码预测帧
+            dec_inputs = self._get_decoder_inputs(pred_feats, feats_dict["residuals"]) # [16 * 512 * 4 * 4,[16 * 64 * 32 * 32, 16 * 128 * 16 * 16, 16 * 256 * 8 * 8]]
+            pred_output, dec_skips = self.decoder(dec_inputs)#  pred_output = 16 * 3 * 64 * 64, dec_skips =[16 * 256 * 8 * 8,16 * 128 * 16 * 16,16 * 64 * 32 * 32]
+            if (t >= context-1): # t >= 17 - 1 = 16
                 if (torch.count_nonzero(out_dict["target_masks"][0]) < num_preds[0]):
                     preds[0].append(pred_output)
                     out_dict["target_masks"][0][t+1] = True
@@ -99,11 +99,11 @@ class HierarchModel(models.VideoPredModel):
                     preds[0].append(pred_output)
 
             # decoding high-level predictions, if available #解码高级预测（如果有）
-            if self.aux_outputs:
-                dec_head_inputs = self._get_decoder_head_inputs(pred_feats, dec_skips)
-                for h in range(1, self.num_hierarch):
-                    if (t >= context-1 and (len(preds[h]) < num_preds[h] or openloop)):
-                        pred_out, ticked = self.decoder_heads[h-1](dec_head_inputs[h-1])
+            if self.aux_outputs: # True
+                dec_head_inputs = self._get_decoder_head_inputs(pred_feats, dec_skips) # dec_head_inputs = [16 * 128 * 16 * 16,16 * 256 * 8 * 8]
+                for h in range(1, self.num_hierarch):# num_hierarch = 3, (1,2)
+                    if (t >= context-1 and (len(preds[h]) < num_preds[h] or openloop)): # t >= 17-1 = 16 and (0 < 5 or False) = False
+                        pred_out, ticked = self.decoder_heads[h-1](dec_head_inputs[h-1]) # 16 * 1 * 64 * 64
                         if ticked and (torch.count_nonzero(out_dict["target_masks"][h]) < num_preds[h]):
                             preds[h].append(pred_out)
                             p = self.decoder_heads[h-1].period
@@ -112,8 +112,8 @@ class HierarchModel(models.VideoPredModel):
                             preds[h].append(pred_out)
 
         # reshaping of tensors
-        if self.stochastic:
-            for i in range(self.num_hierarch):
+        if self.stochastic: # True
+            for i in range(self.num_hierarch): # num_hierarch = 3,[1,2,3]
                 for k in ["mu_post", "logvar_post", "mu_prior", "logvar_prior"]:
                     out_dict[k][i] = out_dict[k][i][:len(preds[i])]
         for h, pred_list in preds.items():

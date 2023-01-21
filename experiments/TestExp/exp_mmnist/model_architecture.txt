@@ -1,0 +1,220 @@
+Total Params: 25934269
+
+Params: 2758464
+encoder(
+  (c1): dcgan_conv(
+    (main): Sequential(
+      (0): Conv2d(3, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+  )
+  (c2): dcgan_conv(
+    (main): Sequential(
+      (0): Conv2d(64, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+  )
+  (c3): dcgan_conv(
+    (main): Sequential(
+      (0): Conv2d(128, 256, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+  )
+  (c4): Sequential(
+    (0): Conv2d(256, 512, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+    (2): Tanh()
+  )
+)
+
+Params: 3415363
+decoder(
+  (upc1): dcgan_upconv(
+    (main): Sequential(
+      (0): ConvTranspose2d(512, 256, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+  )
+  (upc2): dcgan_upconv(
+    (main): Sequential(
+      (0): ConvTranspose2d(512, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+  )
+  (upc3): dcgan_upconv(
+    (main): Sequential(
+      (0): ConvTranspose2d(256, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+      (2): LeakyReLU(negative_slope=0.2, inplace=True)
+    )
+  )
+  (upc4): Sequential(
+    (0): ConvTranspose2d(128, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (1): Sigmoid()
+  )
+)
+
+Params: 1453692
+ModuleList(
+  (0): GaussianConvLSTM(
+    (cell_list): ModuleList(
+      (0): ConvLSTMCell(
+        (conv): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+    )
+    (input_conv): Conv2d(148, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (mu_var_net): Conv2d(64, 20, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+  (1): GaussianConvLSTM(
+    (cell_list): ModuleList(
+      (0): ConvLSTMCell(
+        (conv): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+    )
+    (input_conv): Conv2d(266, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (mu_var_net): Conv2d(64, 20, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+  (2): GaussianConvLSTM(
+    (cell_list): ModuleList(
+      (0): ConvLSTMCell(
+        (conv): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+    )
+    (input_conv): Conv2d(512, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (mu_var_net): Conv2d(64, 20, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+)
+
+Params: 1453692
+ModuleList(
+  (0): GaussianConvLSTM(
+    (cell_list): ModuleList(
+      (0): ConvLSTMCell(
+        (conv): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+    )
+    (input_conv): Conv2d(148, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (mu_var_net): Conv2d(64, 20, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+  (1): GaussianConvLSTM(
+    (cell_list): ModuleList(
+      (0): ConvLSTMCell(
+        (conv): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+    )
+    (input_conv): Conv2d(266, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (mu_var_net): Conv2d(64, 20, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+  (2): GaussianConvLSTM(
+    (cell_list): ModuleList(
+      (0): ConvLSTMCell(
+        (conv): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+    )
+    (input_conv): Conv2d(512, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (mu_var_net): Conv2d(64, 20, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+)
+
+Params: 16262144
+ModuleList(
+  (0): ConvLSTM(
+    (input_conv): Conv2d(138, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (cell_list): ModuleList(
+      (0): ConvLSTMCell(
+        (conv): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+      (1): ConvLSTMCell(
+        (conv): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+      (2): ConvLSTMCell(
+        (conv): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+      (3): ConvLSTMCell(
+        (conv): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+    )
+    (out_proj): Sequential(
+      (0): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Tanh()
+    )
+  )
+  (1): ConvLSTM(
+    (input_conv): Conv2d(266, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (cell_list): ModuleList(
+      (0): ConvLSTMCell(
+        (conv): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+      (1): ConvLSTMCell(
+        (conv): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+      (2): ConvLSTMCell(
+        (conv): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+      (3): ConvLSTMCell(
+        (conv): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+    )
+    (out_proj): Sequential(
+      (0): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Tanh()
+    )
+  )
+  (2): ConvLSTM(
+    (input_conv): Conv2d(522, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (cell_list): ModuleList(
+      (0): ConvLSTMCell(
+        (conv): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+      (1): ConvLSTMCell(
+        (conv): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+      (2): ConvLSTMCell(
+        (conv): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+      (3): ConvLSTMCell(
+        (conv): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+    )
+    (out_proj): Sequential(
+      (0): Conv2d(128, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Tanh()
+    )
+  )
+)
+
+Params: 590914
+ModuleList(
+  (0): DeconvHead(
+    (upc_layers): ModuleList(
+      (0): ConvTranspose2d(128, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+      (2): ReLU(inplace=True)
+      (3): ConvTranspose2d(64, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+      (5): ReLU(inplace=True)
+      (6): Conv2d(64, 1, kernel_size=(1, 1), stride=(1, 1))
+      (7): Sigmoid()
+    )
+  )
+  (1): DeconvHead(
+    (upc_layers): ModuleList(
+      (0): ConvTranspose2d(256, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+      (2): ReLU(inplace=True)
+      (3): ConvTranspose2d(64, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+      (5): ReLU(inplace=True)
+      (6): ConvTranspose2d(64, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+      (7): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+      (8): ReLU(inplace=True)
+      (9): Conv2d(64, 1, kernel_size=(1, 1), stride=(1, 1))
+      (10): Sigmoid()
+    )
+  )
+)

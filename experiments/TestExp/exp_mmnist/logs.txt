@@ -1,0 +1,2202 @@
+2022-10-22-16:38:07    INFO: Calling: create_directory...
+2022-10-22-16:38:07    INFO: Calling: create_directory...
+2022-10-22-16:38:07    INFO: Creating experiment parameters file from config mmnist.json...
+
+
+
+2022-10-22-16:42:24    NEW_EXP: Starting training procedure
+2022-10-22-16:42:24    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-22-16:42:24    INFO: Initializing Trainer...
+2022-10-22-16:42:24    INFO: Calling: create_directory...
+2022-10-22-16:42:24    INFO: Calling: create_directory...
+2022-10-22-16:42:24    INFO: Calling: create_directory...
+2022-10-22-16:42:24    INFO: Calling: create_directory...
+2022-10-22-16:42:24    INFO: Calling: create_directory...
+2022-10-22-16:42:24    INFO: Loading dataset...
+2022-10-22-16:42:30    INFO:   --> Number of training sequences: 60000
+2022-10-22-16:42:30    INFO:   --> Number of validation sequences: 10000
+2022-10-22-16:42:30    INFO: Setting up model and optimizer
+2022-10-22-16:42:30    INFO: Calling: setup_model...
+2022-10-22-16:42:30    INFO: Model parameters initialized correctly
+2022-10-22-16:42:30    INFO: Calling: log_architecture...
+2022-10-22-16:42:30    INFO: Calling: setup_optimization...
+2022-10-22-16:42:30    INFO: Setting up Adam optimizer:
+2022-10-22-16:42:30    INFO:   --> LR: 0.0001
+2022-10-22-16:42:30    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-10-22-16:42:30    INFO:   --> Warmup Steps:  0
+2022-10-22-16:42:30    INFO:   --> Decay Steps:   [250]
+2022-10-22-16:42:30    INFO:   --> Factor:        0.5
+2022-10-22-16:42:30    INFO: Starting to train
+2022-10-22-16:42:30    INFO: Epoch 0/350
+2022-10-22-16:54:23    INFO: Log data valid epoch 0: loss=0.28634;
+2022-10-22-16:54:28    INFO: Log data train iteration 0:  loss=0.28642;
+2022-10-22-16:54:32    INFO: There has been an exception. Saving emergency checkpoint...
+2022-10-22-16:54:32    INFO: Calling: save_checkpoint...
+2022-10-22-16:54:32    INFO: Calling: create_directory...
+2022-10-22-16:54:32    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-10-22-16:54:32    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "src/02_train.py", line 189, in training_loop
+    self.train_epoch(epoch)
+  File "src/02_train.py", line 274, in train_epoch
+    teacher_force=teacher_force
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 88, in forward
+    context=context
+  File "E:\papercode\MSPred\src\models\VideoPred_SpatioTempHierarchLSTM.py", line 81, in predict
+    pred_feats = cur_model(feats_, hidden_state=cur_model.hidden[0])
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\ConvLSTM.py", line 238, in forward
+    self.hidden[i] = self.cell_list[i](x=cur_input, state=self.hidden[i])
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\ConvLSTM.py", line 79, in forward
+    updated_cell_state = f * cell_state + i * g
+RuntimeError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 8.00 GiB total capacity; 7.19 GiB already allocated; 0 bytes free; 7.27 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+
+
+
+
+2022-10-22-17:02:21    NEW_EXP: Starting evaluation procedure
+2022-10-22-17:02:21    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-22-17:02:21    INFO: Initializing Evaluator...
+2022-10-22-17:02:21    INFO: Calling: __init__...
+2022-10-22-17:02:21    INFO: Calling: create_directory...
+2022-10-22-17:02:21    INFO: Calling: create_directory...
+2022-10-22-17:02:21    INFO: Calling: create_directory...
+2022-10-22-17:02:21    INFO: Calling: create_directory...
+2022-10-22-17:02:21    INFO: Calling: create_directory...
+2022-10-22-17:02:21    INFO: Loading dataset...
+2022-10-22-17:02:21    INFO: Calling: load_data...
+2022-10-22-17:02:21    INFO:   --> Number of test sequences: 10000
+2022-10-22-17:02:21    INFO: Setting up model and loading pretrained parameters
+2022-10-22-17:02:21    INFO: Calling: setup_model...
+2022-10-22-17:02:21    INFO: Calling: setup_model...
+2022-10-22-17:02:21    INFO: Model parameters initialized correctly
+2022-10-22-17:02:21    INFO: Calling: load_checkpoint...
+2022-10-22-17:02:22    INFO: Starting evaluation
+2022-10-22-17:02:22    INFO: Calling: evaluate...
+2022-10-22-17:13:18    INFO: RESULTS:
+2022-10-22-17:13:18    INFO: --------
+2022-10-22-17:13:18    INFO:   mean_mse:  0.00338
+2022-10-22-17:13:18    INFO:   mean_mae:  0.01176
+2022-10-22-17:13:18    INFO:   mean_psnr:  25.98716
+2022-10-22-17:13:18    INFO:   mean_ssim:  0.96019
+2022-10-22-17:13:18    INFO:   mean_lpips:  0.03019
+2022-10-22-17:13:18    INFO: RESULTS:
+2022-10-22-17:13:18    INFO: --------
+2022-10-22-17:13:18    INFO:   mean_mse:  0.00017
+2022-10-22-17:13:18    INFO:   mean_mae:  0.00137
+2022-10-22-17:13:19    INFO: RESULTS:
+2022-10-22-17:13:19    INFO: --------
+2022-10-22-17:13:19    INFO:   mean_mse:  0.00254
+2022-10-22-17:13:19    INFO:   mean_mae:  0.01541
+
+
+
+2022-10-26-20:57:02    NEW_EXP: Starting training procedure
+2022-10-26-20:57:05    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-26-20:57:06    INFO: Initializing Trainer...
+2022-10-26-20:57:08    INFO: Calling: create_directory...
+2022-10-26-20:57:08    INFO: Calling: create_directory...
+2022-10-26-20:57:08    INFO: Calling: create_directory...
+2022-10-26-20:57:08    INFO: Calling: create_directory...
+2022-10-26-20:57:08    INFO: Calling: create_directory...
+
+
+
+2022-10-26-20:58:08    NEW_EXP: Starting training procedure
+2022-10-26-20:58:08    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-26-20:58:09    INFO: Initializing Trainer...
+2022-10-26-21:05:59    INFO: Calling: create_directory...
+2022-10-26-21:06:00    INFO: Calling: create_directory...
+2022-10-26-21:06:19    INFO: Calling: create_directory...
+2022-10-26-21:06:28    INFO: Calling: create_directory...
+2022-10-26-21:06:32    INFO: Calling: create_directory...
+2022-10-26-21:06:46    INFO: Loading dataset...
+
+
+
+2022-10-26-21:24:36    NEW_EXP: Starting training procedure
+2022-10-26-21:24:36    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-26-21:24:37    INFO: Initializing Trainer...
+2022-10-26-21:24:44    INFO: Calling: create_directory...
+2022-10-26-21:24:44    INFO: Calling: create_directory...
+2022-10-26-21:24:45    INFO: Calling: create_directory...
+2022-10-26-21:24:45    INFO: Calling: create_directory...
+2022-10-26-21:24:45    INFO: Calling: create_directory...
+2022-10-26-21:24:48    INFO: Loading dataset...
+2022-10-26-21:25:38    INFO:   --> Number of training sequences: 60000
+2022-10-26-21:25:39    INFO:   --> Number of validation sequences: 10000
+2022-10-26-21:25:45    INFO: Setting up model and optimizer
+2022-10-26-21:28:14    INFO: Calling: setup_model...
+2022-10-26-21:38:16    INFO: Model parameters initialized correctly
+2022-10-26-21:38:18    INFO: Calling: log_architecture...
+2022-10-26-21:38:35    INFO: Calling: setup_optimization...
+2022-10-26-21:38:35    INFO: Setting up Adam optimizer:
+2022-10-26-21:38:35    INFO:   --> LR: 0.0001
+2022-10-26-21:38:35    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-10-26-21:38:35    INFO:   --> Warmup Steps:  0
+2022-10-26-21:38:35    INFO:   --> Decay Steps:   [250]
+2022-10-26-21:38:35    INFO:   --> Factor:        0.5
+2022-10-26-21:39:22    INFO: Starting to train
+2022-10-26-21:39:22    INFO: Epoch 0/350
+2022-10-26-21:39:38    INFO: There has been an exception. Saving emergency checkpoint...
+2022-10-26-21:39:38    INFO: Calling: save_checkpoint...
+2022-10-26-21:39:38    INFO: Calling: create_directory...
+2022-10-26-21:39:38    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-10-26-21:39:38    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 187, in training_loop
+    self.valid_epoch(epoch)
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\autograd\grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 368, in valid_epoch
+    teacher_force=False
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 46, in forward
+    if not isinstance(num_preds, list):
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 46, in forward
+    if not isinstance(num_preds, list):
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_37_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.do_wait_suspend
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1147, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1162, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+
+
+
+2022-10-26-21:39:47    NEW_EXP: Starting training procedure
+2022-10-26-21:39:47    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-26-21:39:47    INFO: Initializing Trainer...
+2022-10-26-21:39:48    INFO: Calling: create_directory...
+2022-10-26-21:39:48    INFO: Calling: create_directory...
+2022-10-26-21:39:48    INFO: Calling: create_directory...
+2022-10-26-21:39:48    INFO: Calling: create_directory...
+2022-10-26-21:39:48    INFO: Calling: create_directory...
+2022-10-26-21:39:48    INFO: Loading dataset...
+2022-10-26-21:39:50    INFO:   --> Number of training sequences: 60000
+2022-10-26-21:39:50    INFO:   --> Number of validation sequences: 10000
+2022-10-26-21:39:50    INFO: Setting up model and optimizer
+2022-10-26-21:39:53    INFO: Calling: setup_model...
+2022-10-26-21:40:04    INFO: Model parameters initialized correctly
+2022-10-26-21:40:04    INFO: Calling: log_architecture...
+2022-10-26-21:40:04    INFO: Calling: setup_optimization...
+2022-10-26-21:40:04    INFO: Setting up Adam optimizer:
+2022-10-26-21:40:04    INFO:   --> LR: 0.0001
+2022-10-26-21:40:04    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-10-26-21:40:04    INFO:   --> Warmup Steps:  0
+2022-10-26-21:40:04    INFO:   --> Decay Steps:   [250]
+2022-10-26-21:40:04    INFO:   --> Factor:        0.5
+2022-10-26-21:40:05    INFO: Starting to train
+2022-10-26-21:40:05    INFO: Epoch 0/350
+2022-10-26-21:40:20    INFO: There has been an exception. Saving emergency checkpoint...
+2022-10-26-21:40:20    INFO: Calling: save_checkpoint...
+2022-10-26-21:40:20    INFO: Calling: create_directory...
+2022-10-26-21:40:20    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-10-26-21:40:20    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 187, in training_loop
+    self.valid_epoch(epoch)
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\autograd\grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 368, in valid_epoch
+    teacher_force=False
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 45, in forward
+    batch_size, seq_len = x.shape[:2]
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 45, in forward
+    batch_size, seq_len = x.shape[:2]
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_37_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 929, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 920, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.do_wait_suspend
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1147, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1162, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+
+
+
+2022-10-26-21:40:30    NEW_EXP: Starting training procedure
+2022-10-26-21:40:30    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-26-21:40:30    INFO: Initializing Trainer...
+2022-10-26-21:40:31    INFO: Calling: create_directory...
+2022-10-26-21:40:31    INFO: Calling: create_directory...
+2022-10-26-21:40:31    INFO: Calling: create_directory...
+2022-10-26-21:40:31    INFO: Calling: create_directory...
+2022-10-26-21:40:31    INFO: Calling: create_directory...
+2022-10-26-21:40:31    INFO: Loading dataset...
+2022-10-26-21:40:33    INFO:   --> Number of training sequences: 60000
+2022-10-26-21:40:33    INFO:   --> Number of validation sequences: 10000
+2022-10-26-21:40:33    INFO: Setting up model and optimizer
+2022-10-26-21:40:38    INFO: Calling: setup_model...
+2022-10-26-21:40:43    INFO: Model parameters initialized correctly
+2022-10-26-21:40:43    INFO: Calling: log_architecture...
+2022-10-26-21:40:43    INFO: Calling: setup_optimization...
+2022-10-26-21:40:43    INFO: Setting up Adam optimizer:
+2022-10-26-21:40:43    INFO:   --> LR: 0.0001
+2022-10-26-21:40:43    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-10-26-21:40:43    INFO:   --> Warmup Steps:  0
+2022-10-26-21:40:43    INFO:   --> Decay Steps:   [250]
+2022-10-26-21:40:43    INFO:   --> Factor:        0.5
+2022-10-26-21:40:44    INFO: Starting to train
+2022-10-26-21:40:56    INFO: Epoch 0/350
+2022-10-26-21:41:53    INFO: There has been an exception. Saving emergency checkpoint...
+2022-10-26-21:41:53    INFO: Calling: save_checkpoint...
+2022-10-26-21:41:53    INFO: Calling: create_directory...
+2022-10-26-21:41:54    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-10-26-21:41:54    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 187, in training_loop
+    self.valid_epoch(epoch)
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\autograd\grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 368, in valid_epoch
+    teacher_force=False
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 46, in forward
+    if not isinstance(num_preds, list):
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 46, in forward
+    if not isinstance(num_preds, list):
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_37_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 929, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 920, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.do_wait_suspend
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1147, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1162, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+
+
+
+2022-10-26-21:42:42    NEW_EXP: Starting training procedure
+2022-10-26-21:42:42    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-26-21:42:42    INFO: Initializing Trainer...
+2022-10-26-21:42:43    INFO: Calling: create_directory...
+2022-10-26-21:42:43    INFO: Calling: create_directory...
+2022-10-26-21:42:43    INFO: Calling: create_directory...
+2022-10-26-21:42:43    INFO: Calling: create_directory...
+2022-10-26-21:42:43    INFO: Calling: create_directory...
+2022-10-26-21:42:43    INFO: Loading dataset...
+2022-10-26-21:42:46    INFO:   --> Number of training sequences: 60000
+2022-10-26-21:42:46    INFO:   --> Number of validation sequences: 10000
+2022-10-26-21:42:46    INFO: Setting up model and optimizer
+2022-10-26-21:42:50    INFO: Calling: setup_model...
+2022-10-26-21:42:55    INFO: Model parameters initialized correctly
+2022-10-26-21:42:55    INFO: Calling: log_architecture...
+2022-10-26-21:42:55    INFO: Calling: setup_optimization...
+2022-10-26-21:42:55    INFO: Setting up Adam optimizer:
+2022-10-26-21:42:55    INFO:   --> LR: 0.0001
+2022-10-26-21:42:55    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-10-26-21:42:55    INFO:   --> Warmup Steps:  0
+2022-10-26-21:42:55    INFO:   --> Decay Steps:   [250]
+2022-10-26-21:42:55    INFO:   --> Factor:        0.5
+2022-10-26-21:42:56    INFO: Starting to train
+2022-10-26-21:43:03    INFO: Epoch 0/350
+2022-10-26-23:41:11    INFO: There has been an exception. Saving emergency checkpoint...
+2022-10-26-23:41:11    INFO: Calling: save_checkpoint...
+2022-10-26-23:41:11    INFO: Calling: create_directory...
+
+
+
+2022-10-29-10:01:55    NEW_EXP: Starting training procedure
+2022-10-29-10:01:55    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-29-10:01:55    INFO: Initializing Trainer...
+2022-10-29-10:01:59    INFO: Calling: create_directory...
+2022-10-29-10:01:59    INFO: Calling: create_directory...
+2022-10-29-10:01:59    INFO: Calling: create_directory...
+2022-10-29-10:01:59    INFO: Calling: create_directory...
+2022-10-29-10:01:59    INFO: Calling: create_directory...
+2022-10-29-10:02:00    INFO: Loading dataset...
+2022-10-29-10:08:06    INFO:   --> Number of training sequences: 60000
+2022-10-29-10:08:06    INFO:   --> Number of validation sequences: 10000
+2022-10-29-10:08:06    INFO: Setting up model and optimizer
+2022-10-29-10:08:17    INFO: Calling: setup_model...
+2022-10-29-11:29:53    INFO: Model parameters initialized correctly
+2022-10-29-11:29:55    INFO: Calling: log_architecture...
+2022-10-29-11:30:00    INFO: Calling: setup_optimization...
+2022-10-29-11:30:00    INFO: Setting up Adam optimizer:
+2022-10-29-11:30:00    INFO:   --> LR: 0.0001
+2022-10-29-11:30:00    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-10-29-11:30:00    INFO:   --> Warmup Steps:  0
+2022-10-29-11:30:00    INFO:   --> Decay Steps:   [250]
+2022-10-29-11:30:00    INFO:   --> Factor:        0.5
+
+
+
+2022-10-29-11:43:44    NEW_EXP: Starting training procedure
+2022-10-29-11:43:44    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-29-11:43:44    INFO: Initializing Trainer...
+2022-10-29-11:43:44    INFO: Calling: create_directory...
+2022-10-29-11:43:44    INFO: Calling: create_directory...
+2022-10-29-11:43:44    INFO: Calling: create_directory...
+2022-10-29-11:43:44    INFO: Calling: create_directory...
+2022-10-29-11:43:44    INFO: Calling: create_directory...
+2022-10-29-11:43:44    INFO: Loading dataset...
+2022-10-29-11:43:44    INFO:   --> Number of training sequences: 60000
+2022-10-29-11:43:44    INFO:   --> Number of validation sequences: 10000
+2022-10-29-11:43:44    INFO: Setting up model and optimizer
+2022-10-29-11:43:45    INFO: Calling: setup_model...
+2022-10-29-11:43:45    INFO: Model parameters initialized correctly
+2022-10-29-11:43:45    INFO: Calling: log_architecture...
+2022-10-29-11:43:46    INFO: Calling: setup_optimization...
+2022-10-29-11:43:46    INFO: Setting up Adam optimizer:
+2022-10-29-11:43:46    INFO:   --> LR: 0.0001
+2022-10-29-11:43:46    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-10-29-11:43:46    INFO:   --> Warmup Steps:  0
+2022-10-29-11:43:46    INFO:   --> Decay Steps:   [250]
+2022-10-29-11:43:46    INFO:   --> Factor:        0.5
+2022-10-29-11:43:46    INFO: Starting to train
+2022-10-29-11:43:46    INFO: Epoch 0/350
+2022-10-29-11:45:19    INFO: There has been an exception. Saving emergency checkpoint...
+2022-10-29-11:45:19    INFO: Calling: save_checkpoint...
+2022-10-29-11:45:19    INFO: Calling: create_directory...
+2022-10-29-11:45:19    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-10-29-11:45:19    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 187, in training_loop
+    self.valid_epoch(epoch)
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\autograd\grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 368, in valid_epoch
+    teacher_force=False
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 88, in forward
+    context=context
+  File "E:\papercode\MSPred\src\models\VideoPred_SpatioTempHierarchLSTM.py", line 81, in predict
+    pred_feats = cur_model(feats_, hidden_state=cur_model.hidden[0])
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\ConvLSTM.py", line 238, in forward
+    self.hidden[i] = self.cell_list[i](x=cur_input, state=self.hidden[i])
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\ConvLSTM.py", line 80, in forward
+    updated_hidden_state = o * torch.tanh(updated_cell_state)
+KeyboardInterrupt
+
+
+
+
+2022-10-29-11:47:52    NEW_EXP: Starting training procedure
+2022-10-29-11:47:52    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-29-11:47:52    INFO: Initializing Trainer...
+2022-10-29-11:47:52    INFO: Calling: create_directory...
+2022-10-29-11:47:52    INFO: Calling: create_directory...
+2022-10-29-11:47:52    INFO: Calling: create_directory...
+2022-10-29-11:47:52    INFO: Calling: create_directory...
+2022-10-29-11:47:52    INFO: Calling: create_directory...
+2022-10-29-11:47:52    INFO: Loading dataset...
+2022-10-29-11:47:52    INFO:   --> Number of training sequences: 60000
+2022-10-29-11:47:52    INFO:   --> Number of validation sequences: 10000
+2022-10-29-11:47:52    INFO: Setting up model and optimizer
+2022-10-29-11:47:53    INFO: Calling: setup_model...
+2022-10-29-11:47:53    INFO: Model parameters initialized correctly
+2022-10-29-11:47:53    INFO: Calling: log_architecture...
+2022-10-29-11:47:54    INFO: Calling: setup_optimization...
+2022-10-29-11:47:54    INFO: Setting up Adam optimizer:
+2022-10-29-11:47:54    INFO:   --> LR: 0.0001
+2022-10-29-11:47:54    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-10-29-11:47:54    INFO:   --> Warmup Steps:  0
+2022-10-29-11:47:54    INFO:   --> Decay Steps:   [250]
+2022-10-29-11:47:54    INFO:   --> Factor:        0.5
+2022-10-29-11:47:54    INFO: Starting to train
+2022-10-29-11:47:54    INFO: Epoch 0/350
+2022-10-29-11:50:25    INFO: There has been an exception. Saving emergency checkpoint...
+2022-10-29-11:50:25    INFO: Calling: save_checkpoint...
+2022-10-29-11:50:25    INFO: Calling: create_directory...
+2022-10-29-11:50:25    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-10-29-11:50:25    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 187, in training_loop
+    self.valid_epoch(epoch)
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\autograd\grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 358, in valid_epoch
+    for i, inputs_ in progress_bar:
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\tqdm\std.py", line 1195, in __iter__
+    for obj in iterable:
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\utils\data\dataloader.py", line 681, in __next__
+    data = self._next_data()
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\utils\data\dataloader.py", line 721, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\utils\data\_utils\fetch.py", line 49, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\utils\data\_utils\fetch.py", line 49, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "E:\papercode\MSPred\src\data\moving_mnist.py", line 165, in __getitem__
+    frames[i] = np.clip(frame, 0, 1)
+  File "<__array_function__ internals>", line 6, in clip
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\numpy\core\fromnumeric.py", line 2115, in clip
+    return _wrapfunc(a, 'clip', a_min, a_max, out=out, **kwargs)
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\numpy\core\fromnumeric.py", line 57, in _wrapfunc
+    return bound(*args, **kwds)
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\numpy\core\_methods.py", line 160, in _clip
+    um.clip, a, min, max, out=out, casting=casting, **kwargs)
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\numpy\core\_methods.py", line 113, in _clip_dep_invoke_with_casting
+    return ufunc(*args, out=out, **kwargs)
+KeyboardInterrupt
+
+
+
+
+2022-10-29-18:25:46    NEW_EXP: Starting training procedure
+2022-10-29-18:25:46    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-29-18:25:46    INFO: Initializing Trainer...
+2022-10-29-18:25:46    INFO: Calling: create_directory...
+2022-10-29-18:25:46    INFO: Calling: create_directory...
+2022-10-29-18:25:46    INFO: Calling: create_directory...
+2022-10-29-18:25:46    INFO: Calling: create_directory...
+2022-10-29-18:25:46    INFO: Calling: create_directory...
+2022-10-29-18:25:46    INFO: Loading dataset...
+2022-10-29-18:25:46    INFO:   --> Number of training sequences: 60000
+2022-10-29-18:25:46    INFO:   --> Number of validation sequences: 10000
+2022-10-29-18:25:46    INFO: Setting up model and optimizer
+2022-10-29-18:25:46    INFO: Calling: setup_model...
+2022-10-29-18:25:46    INFO: Model parameters initialized correctly
+2022-10-29-18:25:46    INFO: Calling: log_architecture...
+2022-10-29-18:25:46    INFO: Calling: setup_optimization...
+2022-10-29-18:25:46    INFO: Setting up Adam optimizer:
+2022-10-29-18:25:46    INFO:   --> LR: 0.0001
+2022-10-29-18:25:46    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-10-29-18:25:46    INFO:   --> Warmup Steps:  0
+2022-10-29-18:25:46    INFO:   --> Decay Steps:   [250]
+2022-10-29-18:25:46    INFO:   --> Factor:        0.5
+2022-10-29-18:25:46    INFO: Starting to train
+2022-10-29-18:25:46    INFO: Epoch 0/350
+2022-10-29-18:26:50    INFO: There has been an exception. Saving emergency checkpoint...
+2022-10-29-18:26:50    INFO: Calling: save_checkpoint...
+2022-10-29-18:26:50    INFO: Calling: create_directory...
+
+
+
+2022-10-29-18:27:27    NEW_EXP: Starting training procedure
+2022-10-29-18:27:27    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-29-18:27:27    INFO: Initializing Trainer...
+2022-10-29-18:27:27    INFO: Calling: create_directory...
+2022-10-29-18:27:27    INFO: Calling: create_directory...
+2022-10-29-18:27:27    INFO: Calling: create_directory...
+2022-10-29-18:27:27    INFO: Calling: create_directory...
+2022-10-29-18:27:27    INFO: Calling: create_directory...
+2022-10-29-18:27:27    INFO: Loading dataset...
+2022-10-29-18:27:27    INFO:   --> Number of training sequences: 60000
+2022-10-29-18:27:27    INFO:   --> Number of validation sequences: 10000
+2022-10-29-18:27:27    INFO: Setting up model and optimizer
+2022-10-29-18:27:27    INFO: Calling: setup_model...
+2022-10-29-18:27:28    INFO: Model parameters initialized correctly
+2022-10-29-18:27:28    INFO: Calling: log_architecture...
+2022-10-29-18:27:28    INFO: Calling: setup_optimization...
+2022-10-29-18:27:28    INFO: Setting up Adam optimizer:
+2022-10-29-18:27:28    INFO:   --> LR: 0.0001
+2022-10-29-18:27:28    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-10-29-18:27:28    INFO:   --> Warmup Steps:  0
+2022-10-29-18:27:28    INFO:   --> Decay Steps:   [250]
+2022-10-29-18:27:28    INFO:   --> Factor:        0.5
+2022-10-29-18:27:28    INFO: Starting to train
+2022-10-29-18:27:28    INFO: Epoch 0/350
+2022-10-29-18:27:31    INFO: There has been an exception. Saving emergency checkpoint...
+2022-10-29-18:27:31    INFO: Calling: save_checkpoint...
+2022-10-29-18:27:31    INFO: Calling: create_directory...
+2022-10-29-18:27:31    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-10-29-18:27:31    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 188, in training_loop
+    self.valid_epoch(epoch)
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\autograd\grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 377, in valid_epoch
+    g = make_dot(out_dict)
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torchviz\dot.py", line 163, in make_dot
+    add_base_tensor(var)
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torchviz\dot.py", line 146, in add_base_tensor
+    if var in seen:
+TypeError: unhashable type: 'dict'
+
+
+
+
+2022-10-29-19:04:02    NEW_EXP: Starting training procedure
+2022-10-29-19:04:02    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-29-19:04:02    INFO: Initializing Trainer...
+2022-10-29-19:04:09    INFO: Calling: create_directory...
+2022-10-29-19:04:09    INFO: Calling: create_directory...
+2022-10-29-19:04:09    INFO: Calling: create_directory...
+2022-10-29-19:04:09    INFO: Calling: create_directory...
+2022-10-29-19:04:09    INFO: Calling: create_directory...
+2022-10-29-19:04:09    INFO: Loading dataset...
+2022-10-29-19:04:25    INFO:   --> Number of training sequences: 60000
+2022-10-29-19:04:25    INFO:   --> Number of validation sequences: 10000
+2022-10-29-19:04:25    INFO: Setting up model and optimizer
+2022-10-29-19:04:29    INFO: Calling: setup_model...
+2022-10-29-19:05:52    INFO: Model parameters initialized correctly
+2022-10-29-19:05:52    INFO: Calling: log_architecture...
+2022-10-29-19:05:52    INFO: Calling: setup_optimization...
+2022-10-29-19:05:52    INFO: Setting up Adam optimizer:
+2022-10-29-19:05:52    INFO:   --> LR: 0.0001
+2022-10-29-19:05:52    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-10-29-19:05:52    INFO:   --> Warmup Steps:  0
+2022-10-29-19:05:52    INFO:   --> Decay Steps:   [250]
+2022-10-29-19:05:52    INFO:   --> Factor:        0.5
+2022-10-29-19:05:53    INFO: Starting to train
+2022-10-29-19:06:29    INFO: Epoch 0/350
+2022-10-29-19:13:34    INFO: There has been an exception. Saving emergency checkpoint...
+2022-10-29-19:13:34    INFO: Calling: save_checkpoint...
+2022-10-29-19:13:34    INFO: Calling: create_directory...
+2022-10-29-19:13:34    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-10-29-19:13:34    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 187, in training_loop
+    self.valid_epoch(epoch)
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\autograd\grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 368, in valid_epoch
+    teacher_force=False
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 52, in forward
+    self.init_counter()
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 52, in forward
+    self.init_counter()
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_37_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.do_wait_suspend
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1147, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1162, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+
+
+
+2022-10-29-19:13:52    NEW_EXP: Starting training procedure
+2022-10-29-19:13:52    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-29-19:13:52    INFO: Initializing Trainer...
+2022-10-29-19:13:52    INFO: Calling: create_directory...
+2022-10-29-19:13:52    INFO: Calling: create_directory...
+2022-10-29-19:13:52    INFO: Calling: create_directory...
+2022-10-29-19:13:52    INFO: Calling: create_directory...
+2022-10-29-19:13:52    INFO: Calling: create_directory...
+2022-10-29-19:13:52    INFO: Loading dataset...
+2022-10-29-19:13:52    INFO:   --> Number of training sequences: 60000
+2022-10-29-19:13:52    INFO:   --> Number of validation sequences: 10000
+2022-10-29-19:13:52    INFO: Setting up model and optimizer
+2022-10-29-19:13:53    INFO: Calling: setup_model...
+2022-10-29-19:13:57    INFO: Model parameters initialized correctly
+2022-10-29-19:13:57    INFO: Calling: log_architecture...
+2022-10-29-19:13:57    INFO: Calling: setup_optimization...
+2022-10-29-19:13:57    INFO: Setting up Adam optimizer:
+2022-10-29-19:13:57    INFO:   --> LR: 0.0001
+2022-10-29-19:13:57    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-10-29-19:13:57    INFO:   --> Warmup Steps:  0
+2022-10-29-19:13:57    INFO:   --> Decay Steps:   [250]
+2022-10-29-19:13:57    INFO:   --> Factor:        0.5
+2022-10-29-19:13:58    INFO: Starting to train
+2022-10-29-19:14:03    INFO: Epoch 0/350
+2022-10-29-19:38:55    INFO: There has been an exception. Saving emergency checkpoint...
+2022-10-29-19:38:55    INFO: Calling: save_checkpoint...
+2022-10-29-19:38:55    INFO: Calling: create_directory...
+2022-10-29-19:38:55    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-10-29-19:38:55    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 187, in training_loop
+    self.valid_epoch(epoch)
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\autograd\grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 368, in valid_epoch
+    teacher_force=False
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 51, in forward
+    self.init_hidden(batch_size=batch_size)
+  File "E:\papercode\MSPred\src\models\VideoPred_SpatioTempHierarchLSTM.py", line 212, in init_hidden
+    for h, m in enumerate(self.posterior):
+  File "E:\papercode\MSPred\src\models\VideoPred_SpatioTempHierarchLSTM.py", line 212, in init_hidden
+    for h, m in enumerate(self.posterior):
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_37_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.do_wait_suspend
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1147, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1162, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+
+
+
+2022-10-29-19:39:03    NEW_EXP: Starting training procedure
+2022-10-29-19:39:03    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-29-19:39:03    INFO: Initializing Trainer...
+2022-10-29-19:39:04    INFO: Calling: create_directory...
+2022-10-29-19:39:04    INFO: Calling: create_directory...
+2022-10-29-19:39:04    INFO: Calling: create_directory...
+2022-10-29-19:39:04    INFO: Calling: create_directory...
+2022-10-29-19:39:04    INFO: Calling: create_directory...
+2022-10-29-19:39:04    INFO: Loading dataset...
+2022-10-29-19:39:07    INFO:   --> Number of training sequences: 60000
+2022-10-29-19:39:07    INFO:   --> Number of validation sequences: 10000
+2022-10-29-19:39:07    INFO: Setting up model and optimizer
+2022-10-29-19:39:08    INFO: Calling: setup_model...
+2022-10-29-19:39:23    INFO: Model parameters initialized correctly
+2022-10-29-19:39:23    INFO: Calling: log_architecture...
+2022-10-29-19:39:23    INFO: Calling: setup_optimization...
+2022-10-29-19:39:23    INFO: Setting up Adam optimizer:
+2022-10-29-19:39:23    INFO:   --> LR: 0.0001
+2022-10-29-19:39:23    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-10-29-19:39:23    INFO:   --> Warmup Steps:  0
+2022-10-29-19:39:23    INFO:   --> Decay Steps:   [250]
+2022-10-29-19:39:23    INFO:   --> Factor:        0.5
+2022-10-29-19:39:23    INFO: Starting to train
+2022-10-29-19:39:23    INFO: Epoch 0/350
+2022-10-29-21:14:27    INFO: There has been an exception. Saving emergency checkpoint...
+2022-10-29-21:14:27    INFO: Calling: save_checkpoint...
+2022-10-29-21:14:27    INFO: Calling: create_directory...
+2022-10-29-21:14:28    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-10-29-21:14:28    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 187, in training_loop
+    self.valid_epoch(epoch)
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\autograd\grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 368, in valid_epoch
+    teacher_force=False
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 54, in forward
+    out_dict = {"preds": {}, "target_masks": defaultdict(lambda: torch.full((seq_len,), False)),
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 54, in forward
+    out_dict = {"preds": {}, "target_masks": defaultdict(lambda: torch.full((seq_len,), False)),
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_37_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.do_wait_suspend
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1147, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1162, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+
+
+
+2022-10-30-09:25:19    NEW_EXP: Starting training procedure
+2022-10-30-09:25:19    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-30-09:25:19    INFO: Initializing Trainer...
+2022-10-30-09:25:19    INFO: Calling: create_directory...
+2022-10-30-09:25:19    INFO: Calling: create_directory...
+2022-10-30-09:25:19    INFO: Calling: create_directory...
+2022-10-30-09:25:19    INFO: Calling: create_directory...
+2022-10-30-09:25:19    INFO: Calling: create_directory...
+2022-10-30-09:25:20    INFO: Loading dataset...
+2022-10-30-09:25:20    INFO:   --> Number of training sequences: 60000
+2022-10-30-09:25:20    INFO:   --> Number of validation sequences: 10000
+2022-10-30-09:25:20    INFO: Setting up model and optimizer
+2022-10-30-09:25:22    INFO: Calling: setup_model...
+2022-10-30-09:25:30    INFO: Model parameters initialized correctly
+2022-10-30-09:25:30    INFO: Calling: log_architecture...
+2022-10-30-09:25:30    INFO: Calling: setup_optimization...
+2022-10-30-09:25:30    INFO: Setting up Adam optimizer:
+2022-10-30-09:25:30    INFO:   --> LR: 0.0001
+2022-10-30-09:25:30    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-10-30-09:25:30    INFO:   --> Warmup Steps:  0
+2022-10-30-09:25:30    INFO:   --> Decay Steps:   [250]
+2022-10-30-09:25:30    INFO:   --> Factor:        0.5
+2022-10-30-09:25:30    INFO: Starting to train
+2022-10-30-09:25:30    INFO: Epoch 0/350
+2022-10-30-12:24:42    INFO: There has been an exception. Saving emergency checkpoint...
+2022-10-30-12:24:42    INFO: Calling: save_checkpoint...
+2022-10-30-12:24:42    INFO: Calling: create_directory...
+2022-10-30-12:24:42    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-10-30-12:24:42    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 187, in training_loop
+    self.valid_epoch(epoch)
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\autograd\grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 368, in valid_epoch
+    teacher_force=False
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 88, in forward
+    context=context
+  File "E:\papercode\MSPred\src\models\VideoPred_SpatioTempHierarchLSTM.py", line 58, in predict
+    (latent_post, mu_post, logvar_post), ticked = self.posterior[h](post_input)
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\ConvLSTM.py", line 314, in forward
+    self.hidden[i] = self.cell_list[i](x=cur_input, state=self.hidden[i])
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\ConvLSTM.py", line 79, in forward
+    updated_cell_state = f * cell_state + i * g
+  File "E:\papercode\MSPred\src\models\ConvLSTM.py", line 79, in forward
+    updated_cell_state = f * cell_state + i * g
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_37_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.do_wait_suspend
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1147, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1162, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+
+
+
+2022-10-30-16:45:43    NEW_EXP: Starting training procedure
+2022-10-30-16:45:43    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-30-16:45:43    INFO: Initializing Trainer...
+2022-10-30-16:45:44    INFO: Calling: create_directory...
+2022-10-30-16:45:44    INFO: Calling: create_directory...
+2022-10-30-16:45:44    INFO: Calling: create_directory...
+2022-10-30-16:45:44    INFO: Calling: create_directory...
+2022-10-30-16:45:44    INFO: Calling: create_directory...
+2022-10-30-16:45:44    INFO: Loading dataset...
+2022-10-30-16:45:44    INFO:   --> Number of training sequences: 60000
+2022-10-30-16:45:44    INFO:   --> Number of validation sequences: 10000
+2022-10-30-16:45:44    INFO: Setting up model and optimizer
+2022-10-30-16:45:46    INFO: Calling: setup_model...
+2022-10-30-16:45:51    INFO: Model parameters initialized correctly
+2022-10-30-16:45:51    INFO: Calling: log_architecture...
+2022-10-30-16:45:52    INFO: Calling: setup_optimization...
+2022-10-30-16:45:52    INFO: Setting up Adam optimizer:
+2022-10-30-16:45:52    INFO:   --> LR: 0.0001
+2022-10-30-16:45:52    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-10-30-16:45:52    INFO:   --> Warmup Steps:  0
+2022-10-30-16:45:52    INFO:   --> Decay Steps:   [250]
+2022-10-30-16:45:52    INFO:   --> Factor:        0.5
+2022-10-30-16:45:52    INFO: Starting to train
+2022-10-30-16:45:52    INFO: Epoch 0/350
+2022-10-30-17:59:38    INFO: There has been an exception. Saving emergency checkpoint...
+2022-10-30-17:59:38    INFO: Calling: save_checkpoint...
+2022-10-30-17:59:38    INFO: Calling: create_directory...
+
+
+
+2022-10-30-18:00:55    NEW_EXP: Starting training procedure
+2022-10-30-18:00:55    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-30-18:00:55    INFO: Initializing Trainer...
+2022-10-30-18:00:55    INFO: Calling: create_directory...
+2022-10-30-18:00:55    INFO: Calling: create_directory...
+2022-10-30-18:00:55    INFO: Calling: create_directory...
+2022-10-30-18:00:55    INFO: Calling: create_directory...
+2022-10-30-18:00:55    INFO: Calling: create_directory...
+2022-10-30-18:00:55    INFO: Loading dataset...
+2022-10-30-18:00:56    INFO:   --> Number of training sequences: 60000
+2022-10-30-18:00:56    INFO:   --> Number of validation sequences: 10000
+2022-10-30-18:00:56    INFO: Setting up model and optimizer
+2022-10-30-18:00:57    INFO: Calling: setup_model...
+2022-10-30-18:01:02    INFO: Model parameters initialized correctly
+2022-10-30-18:01:02    INFO: Calling: log_architecture...
+2022-10-30-18:01:02    INFO: Calling: setup_optimization...
+2022-10-30-18:01:02    INFO: Setting up Adam optimizer:
+2022-10-30-18:01:02    INFO:   --> LR: 0.0001
+2022-10-30-18:01:02    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-10-30-18:01:02    INFO:   --> Warmup Steps:  0
+2022-10-30-18:01:02    INFO:   --> Decay Steps:   [250]
+2022-10-30-18:01:02    INFO:   --> Factor:        0.5
+2022-10-30-18:01:02    INFO: Starting to train
+2022-10-30-18:01:02    INFO: Epoch 0/350
+2022-10-30-19:27:05    INFO: There has been an exception. Saving emergency checkpoint...
+2022-10-30-19:27:05    INFO: Calling: save_checkpoint...
+2022-10-30-19:27:05    INFO: Calling: create_directory...
+
+
+
+2022-10-30-19:28:12    NEW_EXP: Starting training procedure
+2022-10-30-19:28:12    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-30-19:28:12    INFO: Initializing Trainer...
+2022-10-30-19:28:13    INFO: Calling: create_directory...
+2022-10-30-19:28:13    INFO: Calling: create_directory...
+2022-10-30-19:28:13    INFO: Calling: create_directory...
+2022-10-30-19:28:13    INFO: Calling: create_directory...
+2022-10-30-19:28:13    INFO: Calling: create_directory...
+2022-10-30-19:28:13    INFO: Loading dataset...
+2022-10-30-19:28:15    INFO:   --> Number of training sequences: 60000
+2022-10-30-19:28:15    INFO:   --> Number of validation sequences: 10000
+2022-10-30-19:28:15    INFO: Setting up model and optimizer
+2022-10-30-19:28:17    INFO: Calling: setup_model...
+2022-10-30-19:28:21    INFO: Model parameters initialized correctly
+2022-10-30-19:28:21    INFO: Calling: log_architecture...
+2022-10-30-19:28:21    INFO: Calling: setup_optimization...
+2022-10-30-19:28:21    INFO: Setting up Adam optimizer:
+2022-10-30-19:28:21    INFO:   --> LR: 0.0001
+2022-10-30-19:28:21    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-10-30-19:28:21    INFO:   --> Warmup Steps:  0
+2022-10-30-19:28:21    INFO:   --> Decay Steps:   [250]
+2022-10-30-19:28:21    INFO:   --> Factor:        0.5
+2022-10-30-19:28:22    INFO: Starting to train
+2022-10-30-19:28:23    INFO: Epoch 0/350
+2022-10-30-19:50:22    INFO: There has been an exception. Saving emergency checkpoint...
+2022-10-30-19:50:22    INFO: Calling: save_checkpoint...
+2022-10-30-19:50:22    INFO: Calling: create_directory...
+2022-10-30-19:50:23    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-10-30-19:50:23    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 187, in training_loop
+    self.valid_epoch(epoch)
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\autograd\grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 368, in valid_epoch
+    teacher_force=False
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 67, in forward
+    target_feats = self.encoder(targets[:, t+1])
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\DCGAN_Conv.py", line 65, in forward
+    h1 = self.c1(input_)
+  File "E:\papercode\MSPred\src\models\DCGAN_Conv.py", line 65, in forward
+    h1 = self.c1(input_)
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_37_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 929, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 920, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.do_wait_suspend
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1147, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1162, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+
+
+
+2022-10-30-19:50:32    NEW_EXP: Starting training procedure
+2022-10-30-19:50:32    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-30-19:50:32    INFO: Initializing Trainer...
+2022-10-30-19:50:32    INFO: Calling: create_directory...
+2022-10-30-19:50:32    INFO: Calling: create_directory...
+2022-10-30-19:50:32    INFO: Calling: create_directory...
+2022-10-30-19:50:32    INFO: Calling: create_directory...
+2022-10-30-19:50:32    INFO: Calling: create_directory...
+2022-10-30-19:50:33    INFO: Loading dataset...
+2022-10-30-19:50:33    INFO:   --> Number of training sequences: 60000
+2022-10-30-19:50:33    INFO:   --> Number of validation sequences: 10000
+2022-10-30-19:50:33    INFO: Setting up model and optimizer
+2022-10-30-19:50:35    INFO: Calling: setup_model...
+2022-10-30-19:50:39    INFO: Model parameters initialized correctly
+2022-10-30-19:50:39    INFO: Calling: log_architecture...
+2022-10-30-19:50:39    INFO: Calling: setup_optimization...
+2022-10-30-19:50:39    INFO: Setting up Adam optimizer:
+2022-10-30-19:50:39    INFO:   --> LR: 0.0001
+2022-10-30-19:50:39    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-10-30-19:50:39    INFO:   --> Warmup Steps:  0
+2022-10-30-19:50:39    INFO:   --> Decay Steps:   [250]
+2022-10-30-19:50:39    INFO:   --> Factor:        0.5
+2022-10-30-19:50:39    INFO: Starting to train
+2022-10-30-19:50:39    INFO: Epoch 0/350
+
+
+
+2022-10-30-23:27:34    NEW_EXP: Starting training procedure
+2022-10-30-23:27:35    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-30-23:27:35    INFO: Initializing Trainer...
+2022-10-30-23:27:38    INFO: Calling: create_directory...
+2022-10-30-23:27:38    INFO: Calling: create_directory...
+2022-10-30-23:27:39    INFO: Calling: create_directory...
+2022-10-30-23:27:39    INFO: Calling: create_directory...
+2022-10-30-23:27:39    INFO: Calling: create_directory...
+2022-10-30-23:27:41    INFO: Loading dataset...
+2022-10-30-23:27:59    INFO:   --> Number of training sequences: 60000
+2022-10-30-23:27:59    INFO:   --> Number of validation sequences: 10000
+2022-10-30-23:27:59    INFO: Setting up model and optimizer
+2022-10-30-23:28:06    INFO: Calling: setup_model...
+2022-10-30-23:38:24    INFO: Model parameters initialized correctly
+2022-10-30-23:38:24    INFO: Calling: log_architecture...
+2022-10-30-23:38:24    INFO: Calling: setup_optimization...
+2022-10-30-23:38:24    INFO: Setting up Adam optimizer:
+2022-10-30-23:38:24    INFO:   --> LR: 0.0001
+2022-10-30-23:38:24    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-10-30-23:38:24    INFO:   --> Warmup Steps:  0
+2022-10-30-23:38:24    INFO:   --> Decay Steps:   [250]
+2022-10-30-23:38:24    INFO:   --> Factor:        0.5
+2022-10-30-23:38:24    INFO: Starting to train
+2022-10-30-23:38:56    INFO: Epoch 0/350
+2022-10-31-00:02:20    INFO: There has been an exception. Saving emergency checkpoint...
+2022-10-31-00:02:20    INFO: Calling: save_checkpoint...
+2022-10-31-00:02:20    INFO: Calling: create_directory...
+2022-10-31-00:02:20    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-10-31-00:02:20    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 187, in training_loop
+    self.valid_epoch(epoch)
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\autograd\grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 368, in valid_epoch
+    teacher_force=False
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 64, in forward
+    for t in range(0, seq_len-1):
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 64, in forward
+    for t in range(0, seq_len-1):
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_37_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.do_wait_suspend
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1147, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1162, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+
+
+
+2022-10-31-20:40:11    NEW_EXP: Starting training procedure
+2022-10-31-20:40:11    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-10-31-20:40:12    INFO: Initializing Trainer...
+2022-10-31-21:01:49    INFO: Calling: create_directory...
+2022-10-31-21:01:49    INFO: Calling: create_directory...
+2022-10-31-21:01:49    INFO: Calling: create_directory...
+2022-10-31-21:01:50    INFO: Calling: create_directory...
+2022-10-31-21:01:50    INFO: Calling: create_directory...
+2022-10-31-21:01:54    INFO: Loading dataset...
+2022-10-31-21:24:25    INFO:   --> Number of training sequences: 60000
+2022-10-31-21:24:25    INFO:   --> Number of validation sequences: 10000
+2022-10-31-21:24:25    INFO: Setting up model and optimizer
+2022-10-31-21:24:49    INFO: Calling: setup_model...
+
+
+
+2022-11-12-11:14:12    NEW_EXP: Starting training procedure
+2022-11-12-11:14:14    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-11-12-11:14:15    INFO: Initializing Trainer...
+2022-11-12-11:15:28    INFO: Calling: create_directory...
+2022-11-12-11:15:28    INFO: Calling: create_directory...
+2022-11-12-11:15:29    INFO: Calling: create_directory...
+2022-11-12-11:15:30    INFO: Calling: create_directory...
+2022-11-12-11:15:34    INFO: Calling: create_directory...
+2022-11-12-11:15:40    INFO: Loading dataset...
+
+
+
+2022-11-19-09:31:08    NEW_EXP: Starting training procedure
+2022-11-19-09:31:10    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-11-19-09:31:20    INFO: Initializing Trainer...
+2022-11-19-09:31:41    INFO: Calling: create_directory...
+2022-11-19-09:31:42    INFO: Calling: create_directory...
+2022-11-19-09:31:42    INFO: Calling: create_directory...
+2022-11-19-09:31:42    INFO: Calling: create_directory...
+2022-11-19-09:31:43    INFO: Calling: create_directory...
+2022-11-19-09:31:48    INFO: Loading dataset...
+2022-11-19-09:40:52    INFO:   --> Number of training sequences: 60000
+2022-11-19-09:40:53    INFO:   --> Number of validation sequences: 10000
+2022-11-19-09:45:58    INFO: Setting up model and optimizer
+2022-11-19-09:54:21    INFO: Calling: setup_model...
+
+
+
+2022-11-19-10:58:28    NEW_EXP: Starting training procedure
+2022-11-19-10:58:29    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-11-19-10:58:29    INFO: Initializing Trainer...
+2022-11-19-10:58:34    INFO: Calling: create_directory...
+2022-11-19-10:58:35    INFO: Calling: create_directory...
+2022-11-19-10:58:35    INFO: Calling: create_directory...
+2022-11-19-10:58:36    INFO: Calling: create_directory...
+2022-11-19-10:58:36    INFO: Calling: create_directory...
+2022-11-19-10:58:38    INFO: Loading dataset...
+2022-11-19-10:58:40    INFO:   --> Number of training sequences: 60000
+2022-11-19-10:58:40    INFO:   --> Number of validation sequences: 10000
+2022-11-19-10:58:41    INFO: Setting up model and optimizer
+2022-11-19-10:58:44    INFO: Calling: setup_model...
+2022-11-19-12:16:24    INFO: Model parameters initialized correctly
+2022-11-19-12:20:29    INFO: Calling: log_architecture...
+2022-11-19-12:20:32    INFO: Calling: setup_optimization...
+2022-11-19-12:20:32    INFO: Setting up Adam optimizer:
+2022-11-19-12:20:32    INFO:   --> LR: 0.0001
+2022-11-19-12:20:32    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-11-19-12:20:32    INFO:   --> Warmup Steps:  0
+2022-11-19-12:20:32    INFO:   --> Decay Steps:   [250]
+2022-11-19-12:20:32    INFO:   --> Factor:        0.5
+2022-11-19-12:21:23    INFO: Starting to train
+2022-11-19-12:36:15    INFO: Epoch 0/350
+2022-11-19-12:43:23    INFO: There has been an exception. Saving emergency checkpoint...
+2022-11-19-12:43:23    INFO: Calling: save_checkpoint...
+2022-11-19-12:43:23    INFO: Calling: create_directory...
+
+
+
+2022-11-19-12:45:21    NEW_EXP: Starting training procedure
+2022-11-19-12:45:21    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-11-19-12:45:21    INFO: Initializing Trainer...
+2022-11-19-12:45:22    INFO: Calling: create_directory...
+2022-11-19-12:45:22    INFO: Calling: create_directory...
+2022-11-19-12:45:22    INFO: Calling: create_directory...
+2022-11-19-12:45:22    INFO: Calling: create_directory...
+2022-11-19-12:45:22    INFO: Calling: create_directory...
+2022-11-19-12:45:22    INFO: Loading dataset...
+2022-11-19-12:45:22    INFO:   --> Number of training sequences: 60000
+2022-11-19-12:45:22    INFO:   --> Number of validation sequences: 10000
+2022-11-19-12:45:22    INFO: Setting up model and optimizer
+2022-11-19-12:45:27    INFO: Calling: setup_model...
+2022-11-19-12:45:50    INFO: Model parameters initialized correctly
+2022-11-19-12:45:50    INFO: Calling: log_architecture...
+2022-11-19-12:45:50    INFO: Calling: setup_optimization...
+2022-11-19-12:45:50    INFO: Setting up Adam optimizer:
+2022-11-19-12:45:50    INFO:   --> LR: 0.0001
+2022-11-19-12:45:50    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-11-19-12:45:50    INFO:   --> Warmup Steps:  0
+2022-11-19-12:45:50    INFO:   --> Decay Steps:   [250]
+2022-11-19-12:45:50    INFO:   --> Factor:        0.5
+2022-11-19-12:45:50    INFO: Starting to train
+2022-11-19-12:45:50    INFO: Epoch 0/350
+2022-11-19-12:46:15    INFO: There has been an exception. Saving emergency checkpoint...
+2022-11-19-12:46:15    INFO: Calling: save_checkpoint...
+2022-11-19-12:46:15    INFO: Calling: create_directory...
+2022-11-19-12:46:15    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-11-19-12:46:15    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 187, in training_loop
+    self.valid_epoch(epoch)
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\autograd\grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 368, in valid_epoch
+    teacher_force=False
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 67, in forward
+    target_feats = self.encoder(targets[:, t+1])
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\DCGAN_Conv.py", line 66, in forward
+    h2 = self.c2(h1)
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\DCGAN_Conv.py", line 21, in forward
+    return self.main(input_)
+  File "E:\papercode\MSPred\src\models\DCGAN_Conv.py", line 21, in forward
+    return self.main(input_)
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1589, in _pydevd_bundle.pydevd_cython_win32_37_64.ThreadTracer.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 929, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 920, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.do_wait_suspend
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1147, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1162, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+
+
+
+2022-11-19-12:47:17    NEW_EXP: Starting training procedure
+2022-11-19-12:47:17    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-11-19-12:47:17    INFO: Initializing Trainer...
+2022-11-19-12:47:17    INFO: Calling: create_directory...
+2022-11-19-12:47:17    INFO: Calling: create_directory...
+2022-11-19-12:47:17    INFO: Calling: create_directory...
+2022-11-19-12:47:17    INFO: Calling: create_directory...
+2022-11-19-12:47:17    INFO: Calling: create_directory...
+2022-11-19-12:47:17    INFO: Loading dataset...
+2022-11-19-12:47:17    INFO:   --> Number of training sequences: 60000
+2022-11-19-12:47:17    INFO:   --> Number of validation sequences: 10000
+2022-11-19-12:47:17    INFO: Setting up model and optimizer
+2022-11-19-12:47:19    INFO: Calling: setup_model...
+2022-11-19-12:47:19    INFO: Model parameters initialized correctly
+2022-11-19-12:47:19    INFO: Calling: log_architecture...
+2022-11-19-12:47:19    INFO: Calling: setup_optimization...
+2022-11-19-12:47:19    INFO: Setting up Adam optimizer:
+2022-11-19-12:47:19    INFO:   --> LR: 0.0001
+2022-11-19-12:47:19    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-11-19-12:47:19    INFO:   --> Warmup Steps:  0
+2022-11-19-12:47:19    INFO:   --> Decay Steps:   [250]
+2022-11-19-12:47:19    INFO:   --> Factor:        0.5
+2022-11-19-12:47:19    INFO: Starting to train
+2022-11-19-12:47:19    INFO: Epoch 0/350
+2022-11-19-12:47:48    INFO: There has been an exception. Saving emergency checkpoint...
+2022-11-19-12:47:48    INFO: Calling: save_checkpoint...
+2022-11-19-12:47:48    INFO: Calling: create_directory...
+
+
+
+2022-11-19-12:48:11    NEW_EXP: Starting training procedure
+2022-11-19-12:48:11    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-11-19-12:48:11    INFO: Initializing Trainer...
+2022-11-19-12:48:11    INFO: Calling: create_directory...
+2022-11-19-12:48:11    INFO: Calling: create_directory...
+2022-11-19-12:48:11    INFO: Calling: create_directory...
+2022-11-19-12:48:11    INFO: Calling: create_directory...
+2022-11-19-12:48:11    INFO: Calling: create_directory...
+2022-11-19-12:48:11    INFO: Loading dataset...
+2022-11-19-12:48:11    INFO:   --> Number of training sequences: 60000
+2022-11-19-12:48:11    INFO:   --> Number of validation sequences: 10000
+2022-11-19-12:48:11    INFO: Setting up model and optimizer
+2022-11-19-12:48:13    INFO: Calling: setup_model...
+2022-11-19-12:48:13    INFO: Model parameters initialized correctly
+2022-11-19-12:48:13    INFO: Calling: log_architecture...
+2022-11-19-12:48:13    INFO: Calling: setup_optimization...
+2022-11-19-12:48:13    INFO: Setting up Adam optimizer:
+2022-11-19-12:48:13    INFO:   --> LR: 0.0001
+2022-11-19-12:48:13    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-11-19-12:48:13    INFO:   --> Warmup Steps:  0
+2022-11-19-12:48:13    INFO:   --> Decay Steps:   [250]
+2022-11-19-12:48:13    INFO:   --> Factor:        0.5
+2022-11-19-12:48:13    INFO: Starting to train
+2022-11-19-12:48:13    INFO: Epoch 0/350
+2022-11-19-12:48:25    INFO: Log data train iteration 0:  loss=0.28613;
+
+
+
+2022-11-19-12:48:50    NEW_EXP: Starting training procedure
+2022-11-19-12:48:50    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-11-19-12:48:50    INFO: Initializing Trainer...
+2022-11-19-12:48:50    INFO: Calling: create_directory...
+2022-11-19-12:48:50    INFO: Calling: create_directory...
+2022-11-19-12:48:50    INFO: Calling: create_directory...
+2022-11-19-12:48:50    INFO: Calling: create_directory...
+2022-11-19-12:48:50    INFO: Calling: create_directory...
+2022-11-19-12:48:50    INFO: Loading dataset...
+2022-11-19-12:48:50    INFO:   --> Number of training sequences: 60000
+2022-11-19-12:48:50    INFO:   --> Number of validation sequences: 10000
+2022-11-19-12:48:50    INFO: Setting up model and optimizer
+2022-11-19-12:48:51    INFO: Calling: setup_model...
+2022-11-19-12:48:51    INFO: Model parameters initialized correctly
+2022-11-19-12:48:51    INFO: Calling: log_architecture...
+2022-11-19-12:48:51    INFO: Calling: setup_optimization...
+2022-11-19-12:48:51    INFO: Setting up Adam optimizer:
+2022-11-19-12:48:51    INFO:   --> LR: 0.0001
+2022-11-19-12:48:51    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-11-19-12:48:51    INFO:   --> Warmup Steps:  0
+2022-11-19-12:48:51    INFO:   --> Decay Steps:   [250]
+2022-11-19-12:48:51    INFO:   --> Factor:        0.5
+2022-11-19-12:48:51    INFO: Starting to train
+2022-11-19-12:48:51    INFO: Epoch 0/350
+2022-11-19-13:03:21    INFO: There has been an exception. Saving emergency checkpoint...
+2022-11-19-13:03:21    INFO: Calling: save_checkpoint...
+2022-11-19-13:03:21    INFO: Calling: create_directory...
+2022-11-19-13:03:21    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-11-19-13:03:21    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 189, in training_loop
+    self.train_epoch(epoch)
+  File "E:/papercode/MSPred/src/02_train.py", line 270, in train_epoch
+    out_dict = self.model(
+  File "E:/papercode/MSPred/src/02_train.py", line 270, in train_epoch
+    out_dict = self.model(
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_37_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.do_wait_suspend
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1147, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1162, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+
+
+
+2022-11-19-16:43:52    NEW_EXP: Starting training procedure
+2022-11-19-16:43:52    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-11-19-16:43:52    INFO: Initializing Trainer...
+2022-11-19-16:43:52    INFO: Calling: create_directory...
+2022-11-19-16:43:52    INFO: Calling: create_directory...
+2022-11-19-16:43:52    INFO: Calling: create_directory...
+2022-11-19-16:43:52    INFO: Calling: create_directory...
+2022-11-19-16:43:52    INFO: Calling: create_directory...
+2022-11-19-16:43:52    INFO: Loading dataset...
+2022-11-19-16:43:53    INFO:   --> Number of training sequences: 60000
+2022-11-19-16:43:53    INFO:   --> Number of validation sequences: 10000
+2022-11-19-16:43:53    INFO: Setting up model and optimizer
+2022-11-19-16:43:53    INFO: Calling: setup_model...
+2022-11-19-16:43:53    INFO: Model parameters initialized correctly
+2022-11-19-16:43:53    INFO: Calling: log_architecture...
+2022-11-19-16:43:53    INFO: Calling: setup_optimization...
+2022-11-19-16:43:53    INFO: Setting up Adam optimizer:
+2022-11-19-16:43:53    INFO:   --> LR: 0.0001
+2022-11-19-16:43:53    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-11-19-16:43:53    INFO:   --> Warmup Steps:  0
+2022-11-19-16:43:53    INFO:   --> Decay Steps:   [250]
+2022-11-19-16:43:53    INFO:   --> Factor:        0.5
+2022-11-19-16:43:53    INFO: Starting to train
+2022-11-19-16:43:53    INFO: Epoch 0/350
+2022-11-19-19:36:51    INFO: There has been an exception. Saving emergency checkpoint...
+2022-11-19-19:36:51    INFO: Calling: save_checkpoint...
+2022-11-19-19:36:51    INFO: Calling: create_directory...
+2022-11-19-19:36:51    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-11-19-19:36:51    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 189, in training_loop
+    self.train_epoch(epoch)
+  File "E:/papercode/MSPred/src/02_train.py", line 274, in train_epoch
+    teacher_force=teacher_force
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 88, in forward
+    context=context
+  File "E:\papercode\MSPred\src\models\VideoPred_SpatioTempHierarchLSTM.py", line 62, in predict
+    latent = latent_post if (cur_frame < context-1 or self.training) else latent_prior
+  File "E:\papercode\MSPred\src\models\VideoPred_SpatioTempHierarchLSTM.py", line 62, in predict
+    latent = latent_post if (cur_frame < context-1 or self.training) else latent_prior
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\_pydevd_bundle\pydevd_trace_dispatch.py", line 59, in trace_dispatch
+    return _trace_dispatch(py_db, frame, event, arg)
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1329, in _pydevd_bundle.pydevd_cython_win32_37_64.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1589, in _pydevd_bundle.pydevd_cython_win32_37_64.ThreadTracer.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.do_wait_suspend
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1147, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1162, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+
+
+
+2022-11-20-09:50:22    NEW_EXP: Starting training procedure
+2022-11-20-09:50:22    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-11-20-09:50:22    INFO: Initializing Trainer...
+2022-11-20-09:50:22    INFO: Calling: create_directory...
+2022-11-20-09:50:22    INFO: Calling: create_directory...
+2022-11-20-09:50:22    INFO: Calling: create_directory...
+2022-11-20-09:50:22    INFO: Calling: create_directory...
+2022-11-20-09:50:22    INFO: Calling: create_directory...
+2022-11-20-09:50:22    INFO: Loading dataset...
+2022-11-20-09:50:22    INFO:   --> Number of training sequences: 60000
+2022-11-20-09:50:22    INFO:   --> Number of validation sequences: 10000
+2022-11-20-09:50:22    INFO: Setting up model and optimizer
+2022-11-20-09:50:23    INFO: Calling: setup_model...
+2022-11-20-09:50:24    INFO: Model parameters initialized correctly
+2022-11-20-09:50:24    INFO: Calling: log_architecture...
+2022-11-20-09:50:24    INFO: Calling: setup_optimization...
+2022-11-20-09:50:24    INFO: Setting up Adam optimizer:
+2022-11-20-09:50:24    INFO:   --> LR: 0.0001
+2022-11-20-09:50:24    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-11-20-09:50:24    INFO:   --> Warmup Steps:  0
+2022-11-20-09:50:24    INFO:   --> Decay Steps:   [250]
+2022-11-20-09:50:24    INFO:   --> Factor:        0.5
+2022-11-20-09:50:24    INFO: Starting to train
+2022-11-20-09:50:24    INFO: Epoch 0/350
+2022-11-20-09:53:20    INFO: Log data train iteration 0:  loss=0.28613;
+
+
+
+2022-11-20-09:53:49    NEW_EXP: Starting training procedure
+2022-11-20-09:53:49    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-11-20-09:53:49    INFO: Initializing Trainer...
+2022-11-20-09:53:49    INFO: Calling: create_directory...
+2022-11-20-09:53:49    INFO: Calling: create_directory...
+2022-11-20-09:53:49    INFO: Calling: create_directory...
+2022-11-20-09:53:49    INFO: Calling: create_directory...
+2022-11-20-09:53:49    INFO: Calling: create_directory...
+2022-11-20-09:53:49    INFO: Loading dataset...
+2022-11-20-09:53:49    INFO:   --> Number of training sequences: 60000
+2022-11-20-09:53:49    INFO:   --> Number of validation sequences: 10000
+2022-11-20-09:53:49    INFO: Setting up model and optimizer
+2022-11-20-09:53:51    INFO: Calling: setup_model...
+2022-11-20-09:53:51    INFO: Model parameters initialized correctly
+2022-11-20-09:53:51    INFO: Calling: log_architecture...
+2022-11-20-09:53:51    INFO: Calling: setup_optimization...
+2022-11-20-09:53:51    INFO: Setting up Adam optimizer:
+2022-11-20-09:53:51    INFO:   --> LR: 0.0001
+2022-11-20-09:53:51    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-11-20-09:53:51    INFO:   --> Warmup Steps:  0
+2022-11-20-09:53:51    INFO:   --> Decay Steps:   [250]
+2022-11-20-09:53:51    INFO:   --> Factor:        0.5
+2022-11-20-09:53:51    INFO: Starting to train
+2022-11-20-09:53:51    INFO: Epoch 0/350
+2022-11-20-13:03:59    INFO: There has been an exception. Saving emergency checkpoint...
+2022-11-20-13:03:59    INFO: Calling: save_checkpoint...
+2022-11-20-13:03:59    INFO: Calling: create_directory...
+2022-11-20-13:03:59    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-11-20-13:03:59    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 189, in training_loop
+    self.train_epoch(epoch)
+  File "E:/papercode/MSPred/src/02_train.py", line 274, in train_epoch
+    teacher_force=teacher_force
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 88, in forward
+    context=context
+  File "E:\papercode\MSPred\src\models\VideoPred_SpatioTempHierarchLSTM.py", line 58, in predict
+    (latent_post, mu_post, logvar_post), ticked = self.posterior[h](post_input) # (16 * 10 * 4 * 4,16 * 10 * 4 * 4,16 * 10 * 4 * 4),True
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\ConvLSTM.py", line 319, in forward
+    stats = self.mu_var_net(out_lstm) # 16 * 64 * 4 * 4 => 16 * 20 * 4 * 4 //// 16 * 64 * 8 * 8 => 16 * 20 * 8 * 8 //// 16 * 64 * 16 * 16 => 16 * 20 * 16 * 16
+  File "E:\papercode\MSPred\src\models\ConvLSTM.py", line 319, in forward
+    stats = self.mu_var_net(out_lstm) # 16 * 64 * 4 * 4 => 16 * 20 * 4 * 4 //// 16 * 64 * 8 * 8 => 16 * 20 * 8 * 8 //// 16 * 64 * 16 * 16 => 16 * 20 * 16 * 16
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_37_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.do_wait_suspend
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1147, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1162, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+
+
+
+2022-11-20-16:48:13    NEW_EXP: Starting training procedure
+2022-11-20-16:48:13    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-11-20-16:48:13    INFO: Initializing Trainer...
+2022-11-20-16:48:13    INFO: Calling: create_directory...
+2022-11-20-16:48:13    INFO: Calling: create_directory...
+2022-11-20-16:48:13    INFO: Calling: create_directory...
+2022-11-20-16:48:13    INFO: Calling: create_directory...
+2022-11-20-16:48:13    INFO: Calling: create_directory...
+2022-11-20-16:48:13    INFO: Loading dataset...
+2022-11-20-16:48:14    INFO:   --> Number of training sequences: 60000
+2022-11-20-16:48:14    INFO:   --> Number of validation sequences: 10000
+2022-11-20-16:48:14    INFO: Setting up model and optimizer
+2022-11-20-16:48:15    INFO: Calling: setup_model...
+2022-11-20-16:48:15    INFO: Model parameters initialized correctly
+2022-11-20-16:48:15    INFO: Calling: log_architecture...
+2022-11-20-16:48:15    INFO: Calling: setup_optimization...
+2022-11-20-16:48:15    INFO: Setting up Adam optimizer:
+2022-11-20-16:48:15    INFO:   --> LR: 0.0001
+2022-11-20-16:48:15    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-11-20-16:48:15    INFO:   --> Warmup Steps:  0
+2022-11-20-16:48:15    INFO:   --> Decay Steps:   [250]
+2022-11-20-16:48:15    INFO:   --> Factor:        0.5
+2022-11-20-16:48:15    INFO: Starting to train
+2022-11-20-16:48:15    INFO: Epoch 0/350
+
+
+
+2022-11-21-19:48:10    NEW_EXP: Starting training procedure
+2022-11-21-19:48:10    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-11-21-19:48:10    INFO: Initializing Trainer...
+2022-11-21-19:48:10    INFO: Calling: create_directory...
+2022-11-21-19:48:10    INFO: Calling: create_directory...
+2022-11-21-19:48:10    INFO: Calling: create_directory...
+2022-11-21-19:48:10    INFO: Calling: create_directory...
+2022-11-21-19:48:10    INFO: Calling: create_directory...
+2022-11-21-19:48:10    INFO: Loading dataset...
+2022-11-21-19:48:10    INFO:   --> Number of training sequences: 60000
+2022-11-21-19:48:10    INFO:   --> Number of validation sequences: 10000
+2022-11-21-19:48:10    INFO: Setting up model and optimizer
+2022-11-21-19:48:12    INFO: Calling: setup_model...
+2022-11-21-19:48:12    INFO: Model parameters initialized correctly
+2022-11-21-19:48:12    INFO: Calling: log_architecture...
+2022-11-21-19:48:12    INFO: Calling: setup_optimization...
+2022-11-21-19:48:12    INFO: Setting up Adam optimizer:
+2022-11-21-19:48:12    INFO:   --> LR: 0.0001
+2022-11-21-19:48:12    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-11-21-19:48:12    INFO:   --> Warmup Steps:  0
+2022-11-21-19:48:12    INFO:   --> Decay Steps:   [250]
+2022-11-21-19:48:12    INFO:   --> Factor:        0.5
+2022-11-21-19:48:12    INFO: Starting to train
+2022-11-21-19:48:12    INFO: Epoch 0/350
+
+
+
+2022-11-21-22:25:38    NEW_EXP: Starting training procedure
+2022-11-21-22:25:38    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-11-21-22:25:38    INFO: Initializing Trainer...
+2022-11-21-22:25:38    INFO: Calling: create_directory...
+2022-11-21-22:25:38    INFO: Calling: create_directory...
+2022-11-21-22:25:38    INFO: Calling: create_directory...
+2022-11-21-22:25:38    INFO: Calling: create_directory...
+2022-11-21-22:25:38    INFO: Calling: create_directory...
+2022-11-21-22:25:38    INFO: Loading dataset...
+2022-11-21-22:25:38    INFO:   --> Number of training sequences: 60000
+2022-11-21-22:25:38    INFO:   --> Number of validation sequences: 10000
+2022-11-21-22:25:38    INFO: Setting up model and optimizer
+2022-11-21-22:25:39    INFO: Calling: setup_model...
+2022-11-21-22:25:40    INFO: Model parameters initialized correctly
+2022-11-21-22:25:40    INFO: Calling: log_architecture...
+2022-11-21-22:25:40    INFO: Calling: setup_optimization...
+2022-11-21-22:25:40    INFO: Setting up Adam optimizer:
+2022-11-21-22:25:40    INFO:   --> LR: 0.0001
+2022-11-21-22:25:40    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-11-21-22:25:40    INFO:   --> Warmup Steps:  0
+2022-11-21-22:25:40    INFO:   --> Decay Steps:   [250]
+2022-11-21-22:25:40    INFO:   --> Factor:        0.5
+2022-11-21-22:25:40    INFO: Starting to train
+2022-11-21-22:25:40    INFO: Epoch 0/350
+2022-11-21-22:26:31    INFO: There has been an exception. Saving emergency checkpoint...
+2022-11-21-22:26:31    INFO: Calling: save_checkpoint...
+2022-11-21-22:26:31    INFO: Calling: create_directory...
+2022-11-21-22:26:31    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-11-21-22:26:31    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 189, in training_loop
+    self.train_epoch(epoch)
+  File "E:/papercode/MSPred/src/02_train.py", line 274, in train_epoch
+    teacher_force=teacher_force
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 85, in forward
+    feats_dict=feats_dict,
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 85, in forward
+    feats_dict=feats_dict,
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_37_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.do_wait_suspend
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1147, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1162, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+
+
+
+2022-11-21-22:29:21    NEW_EXP: Starting training procedure
+2022-11-21-22:29:21    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-11-21-22:29:21    INFO: Initializing Trainer...
+2022-11-21-22:29:21    INFO: Calling: create_directory...
+2022-11-21-22:29:21    INFO: Calling: create_directory...
+2022-11-21-22:29:21    INFO: Calling: create_directory...
+2022-11-21-22:29:21    INFO: Calling: create_directory...
+2022-11-21-22:29:21    INFO: Calling: create_directory...
+2022-11-21-22:29:21    INFO: Loading dataset...
+2022-11-21-22:29:21    INFO:   --> Number of training sequences: 60000
+2022-11-21-22:29:21    INFO:   --> Number of validation sequences: 10000
+2022-11-21-22:29:21    INFO: Setting up model and optimizer
+2022-11-21-22:29:22    INFO: Calling: setup_model...
+2022-11-21-22:29:22    INFO: Model parameters initialized correctly
+2022-11-21-22:29:22    INFO: Calling: log_architecture...
+2022-11-21-22:29:22    INFO: Calling: setup_optimization...
+2022-11-21-22:29:22    INFO: Setting up Adam optimizer:
+2022-11-21-22:29:22    INFO:   --> LR: 0.0001
+2022-11-21-22:29:22    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-11-21-22:29:22    INFO:   --> Warmup Steps:  0
+2022-11-21-22:29:22    INFO:   --> Decay Steps:   [250]
+2022-11-21-22:29:22    INFO:   --> Factor:        0.5
+2022-11-21-22:29:22    INFO: Starting to train
+2022-11-21-22:29:22    INFO: Epoch 0/350
+
+
+
+2022-11-23-20:29:05    NEW_EXP: Starting training procedure
+2022-11-23-20:29:05    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-11-23-20:29:05    INFO: Initializing Trainer...
+2022-11-23-20:29:05    INFO: Calling: create_directory...
+2022-11-23-20:29:05    INFO: Calling: create_directory...
+2022-11-23-20:29:05    INFO: Calling: create_directory...
+2022-11-23-20:29:05    INFO: Calling: create_directory...
+2022-11-23-20:29:05    INFO: Calling: create_directory...
+2022-11-23-20:29:05    INFO: Loading dataset...
+2022-11-23-20:29:05    INFO:   --> Number of training sequences: 60000
+2022-11-23-20:29:05    INFO:   --> Number of validation sequences: 10000
+2022-11-23-20:29:05    INFO: Setting up model and optimizer
+2022-11-23-20:29:07    INFO: Calling: setup_model...
+2022-11-23-20:29:07    INFO: Model parameters initialized correctly
+2022-11-23-20:29:07    INFO: Calling: log_architecture...
+2022-11-23-20:29:07    INFO: Calling: setup_optimization...
+2022-11-23-20:29:07    INFO: Setting up Adam optimizer:
+2022-11-23-20:29:07    INFO:   --> LR: 0.0001
+2022-11-23-20:29:07    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-11-23-20:29:07    INFO:   --> Warmup Steps:  0
+2022-11-23-20:29:07    INFO:   --> Decay Steps:   [250]
+2022-11-23-20:29:07    INFO:   --> Factor:        0.5
+2022-11-23-20:29:07    INFO: Starting to train
+2022-11-23-20:29:07    INFO: Epoch 0/350
+2022-11-23-21:10:57    INFO: Log data train iteration 0:  loss=0.28613;
+2022-11-23-21:42:52    INFO: There has been an exception. Saving emergency checkpoint...
+2022-11-23-21:42:52    INFO: Calling: save_checkpoint...
+2022-11-23-21:42:52    INFO: Calling: create_directory...
+2022-11-23-21:42:53    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-11-23-21:42:53    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 189, in training_loop
+    self.train_epoch(epoch)
+  File "E:/papercode/MSPred/src/02_train.py", line 274, in train_epoch
+    teacher_force=teacher_force
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 88, in forward
+    context=context
+  File "E:\papercode\MSPred\src\models\VideoPred_SpatioTempHierarchLSTM.py", line 81, in predict
+    pred_feats = cur_model(feats_, hidden_state=cur_model.hidden[0])
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\ConvLSTM.py", line 238, in forward
+    self.hidden[i] = self.cell_list[i](x=cur_input, state=self.hidden[i])
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\ConvLSTM.py", line 73, in forward
+    i = torch.sigmoid(cc_i)
+RuntimeError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 8.00 GiB total capacity; 7.21 GiB already allocated; 0 bytes free; 7.29 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+
+
+
+
+2022-11-23-21:43:44    NEW_EXP: Starting training procedure
+2022-11-23-21:43:44    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-11-23-21:43:44    INFO: Initializing Trainer...
+2022-11-23-21:43:44    INFO: Calling: create_directory...
+2022-11-23-21:43:44    INFO: Calling: create_directory...
+2022-11-23-21:43:44    INFO: Calling: create_directory...
+2022-11-23-21:43:44    INFO: Calling: create_directory...
+2022-11-23-21:43:44    INFO: Calling: create_directory...
+2022-11-23-21:43:44    INFO: Loading dataset...
+2022-11-23-21:43:44    INFO:   --> Number of training sequences: 60000
+2022-11-23-21:43:44    INFO:   --> Number of validation sequences: 10000
+2022-11-23-21:43:44    INFO: Setting up model and optimizer
+2022-11-23-21:43:46    INFO: Calling: setup_model...
+2022-11-23-21:43:46    INFO: Model parameters initialized correctly
+2022-11-23-21:43:46    INFO: Calling: log_architecture...
+2022-11-23-21:43:46    INFO: Calling: setup_optimization...
+2022-11-23-21:43:46    INFO: Setting up Adam optimizer:
+2022-11-23-21:43:46    INFO:   --> LR: 0.0001
+2022-11-23-21:43:46    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-11-23-21:43:46    INFO:   --> Warmup Steps:  0
+2022-11-23-21:43:46    INFO:   --> Decay Steps:   [250]
+2022-11-23-21:43:46    INFO:   --> Factor:        0.5
+2022-11-23-21:43:46    INFO: Starting to train
+2022-11-23-21:43:46    INFO: Epoch 0/350
+2022-11-23-21:53:35    INFO: There has been an exception. Saving emergency checkpoint...
+2022-11-23-21:53:35    INFO: Calling: save_checkpoint...
+2022-11-23-21:53:35    INFO: Calling: create_directory...
+
+
+
+2022-11-23-21:54:49    NEW_EXP: Starting training procedure
+2022-11-23-21:54:49    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-11-23-21:54:49    INFO: Initializing Trainer...
+2022-11-23-21:54:49    INFO: Calling: create_directory...
+2022-11-23-21:54:49    INFO: Calling: create_directory...
+2022-11-23-21:54:49    INFO: Calling: create_directory...
+2022-11-23-21:54:49    INFO: Calling: create_directory...
+2022-11-23-21:54:49    INFO: Calling: create_directory...
+2022-11-23-21:54:49    INFO: Loading dataset...
+2022-11-23-21:54:49    INFO:   --> Number of training sequences: 60000
+2022-11-23-21:54:49    INFO:   --> Number of validation sequences: 10000
+2022-11-23-21:54:49    INFO: Setting up model and optimizer
+2022-11-23-21:54:50    INFO: Calling: setup_model...
+2022-11-23-21:54:50    INFO: Model parameters initialized correctly
+2022-11-23-21:54:50    INFO: Calling: log_architecture...
+2022-11-23-21:54:50    INFO: Calling: setup_optimization...
+2022-11-23-21:54:50    INFO: Setting up Adam optimizer:
+2022-11-23-21:54:50    INFO:   --> LR: 0.0001
+2022-11-23-21:54:50    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-11-23-21:54:50    INFO:   --> Warmup Steps:  0
+2022-11-23-21:54:50    INFO:   --> Decay Steps:   [250]
+2022-11-23-21:54:50    INFO:   --> Factor:        0.5
+2022-11-23-21:54:50    INFO: Starting to train
+2022-11-23-21:54:50    INFO: Epoch 0/350
+2022-11-23-22:31:31    INFO: There has been an exception. Saving emergency checkpoint...
+2022-11-23-22:31:31    INFO: Calling: save_checkpoint...
+2022-11-23-22:31:31    INFO: Calling: create_directory...
+2022-11-23-22:31:32    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-11-23-22:31:32    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 189, in training_loop
+    self.train_epoch(epoch)
+  File "E:/papercode/MSPred/src/02_train.py", line 314, in train_epoch
+    self.optimizer.step()
+  File "E:/papercode/MSPred/src/02_train.py", line 314, in train_epoch
+    self.optimizer.step()
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_37_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.do_wait_suspend
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1147, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1162, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+
+
+
+2022-11-30-22:33:45    NEW_EXP: Starting training procedure
+2022-11-30-22:33:45    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-11-30-22:33:45    INFO: Initializing Trainer...
+2022-11-30-22:33:45    INFO: Calling: create_directory...
+2022-11-30-22:33:45    INFO: Calling: create_directory...
+2022-11-30-22:33:45    INFO: Calling: create_directory...
+2022-11-30-22:33:45    INFO: Calling: create_directory...
+2022-11-30-22:33:45    INFO: Calling: create_directory...
+2022-11-30-22:33:45    INFO: Loading dataset...
+2022-11-30-22:33:45    INFO:   --> Number of training sequences: 60000
+2022-11-30-22:33:45    INFO:   --> Number of validation sequences: 10000
+2022-11-30-22:33:45    INFO: Setting up model and optimizer
+2022-11-30-22:33:47    INFO: Calling: setup_model...
+2022-11-30-22:33:47    INFO: Model parameters initialized correctly
+2022-11-30-22:33:47    INFO: Calling: log_architecture...
+2022-11-30-22:33:47    INFO: Calling: setup_optimization...
+2022-11-30-22:33:47    INFO: Setting up Adam optimizer:
+2022-11-30-22:33:47    INFO:   --> LR: 0.0001
+2022-11-30-22:33:47    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-11-30-22:33:47    INFO:   --> Warmup Steps:  0
+2022-11-30-22:33:47    INFO:   --> Decay Steps:   [250]
+2022-11-30-22:33:47    INFO:   --> Factor:        0.5
+2022-11-30-22:33:47    INFO: Starting to train
+2022-11-30-22:33:47    INFO: Epoch 0/350
+2022-11-30-22:52:02    INFO: There has been an exception. Saving emergency checkpoint...
+2022-11-30-22:52:02    INFO: Calling: save_checkpoint...
+2022-11-30-22:52:02    INFO: Calling: create_directory...
+
+
+
+2022-12-10-18:21:50    NEW_EXP: Starting training procedure
+2022-12-10-18:21:50    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-12-10-18:21:50    INFO: Initializing Trainer...
+2022-12-10-18:21:50    INFO: Calling: create_directory...
+2022-12-10-18:21:50    INFO: Calling: create_directory...
+2022-12-10-18:21:50    INFO: Calling: create_directory...
+2022-12-10-18:21:50    INFO: Calling: create_directory...
+2022-12-10-18:21:50    INFO: Calling: create_directory...
+2022-12-10-18:21:50    INFO: Loading dataset...
+2022-12-10-18:21:50    INFO:   --> Number of training sequences: 60000
+2022-12-10-18:21:50    INFO:   --> Number of validation sequences: 10000
+2022-12-10-18:21:50    INFO: Setting up model and optimizer
+2022-12-10-18:21:51    INFO: Calling: setup_model...
+2022-12-10-18:21:51    INFO: Model parameters initialized correctly
+2022-12-10-18:21:51    INFO: Calling: log_architecture...
+2022-12-10-18:21:52    INFO: Calling: setup_optimization...
+2022-12-10-18:21:52    INFO: Setting up Adam optimizer:
+2022-12-10-18:21:52    INFO:   --> LR: 0.0001
+2022-12-10-18:21:52    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-12-10-18:21:52    INFO:   --> Warmup Steps:  0
+2022-12-10-18:21:52    INFO:   --> Decay Steps:   [250]
+2022-12-10-18:21:52    INFO:   --> Factor:        0.5
+2022-12-10-18:21:52    INFO: Starting to train
+2022-12-10-18:21:52    INFO: Epoch 0/350
+2022-12-10-18:23:16    INFO: There has been an exception. Saving emergency checkpoint...
+2022-12-10-18:23:16    INFO: Calling: save_checkpoint...
+2022-12-10-18:23:16    INFO: Calling: create_directory...
+2022-12-10-18:23:16    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-12-10-18:23:16    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 189, in training_loop
+    self.train_epoch(epoch)
+  File "E:/papercode/MSPred/src/02_train.py", line 274, in train_epoch
+    teacher_force=teacher_force
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 115, in forward
+    if self.stochastic: # True
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 115, in forward
+    if self.stochastic: # True
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_37_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 929, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 920, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.do_wait_suspend
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1147, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1162, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+
+
+
+2022-12-10-18:24:10    NEW_EXP: Starting training procedure
+2022-12-10-18:24:10    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-12-10-18:24:11    INFO: Initializing Trainer...
+2022-12-10-18:24:19    INFO: Calling: create_directory...
+2022-12-10-18:24:19    INFO: Calling: create_directory...
+2022-12-10-18:24:20    INFO: Calling: create_directory...
+2022-12-10-18:24:20    INFO: Calling: create_directory...
+2022-12-10-18:24:21    INFO: Calling: create_directory...
+2022-12-10-18:24:26    INFO: Loading dataset...
+2022-12-10-18:27:01    INFO:   --> Number of training sequences: 60000
+2022-12-10-18:27:02    INFO:   --> Number of validation sequences: 10000
+2022-12-10-18:27:37    INFO: Setting up model and optimizer
+2022-12-10-18:27:42    INFO: Calling: setup_model...
+2022-12-10-19:14:08    INFO: Model parameters initialized correctly
+2022-12-10-19:14:10    INFO: Calling: log_architecture...
+2022-12-10-19:18:51    INFO: Calling: setup_optimization...
+2022-12-10-19:18:55    INFO: Setting up Adam optimizer:
+2022-12-10-19:18:56    INFO:   --> LR: 0.0001
+2022-12-10-19:19:13    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-12-10-19:19:13    INFO:   --> Warmup Steps:  0
+2022-12-10-19:19:13    INFO:   --> Decay Steps:   [250]
+2022-12-10-19:19:14    INFO:   --> Factor:        0.5
+2022-12-10-20:41:31    INFO: Starting to train
+2022-12-10-20:41:48    INFO: Epoch 0/350
+2022-12-10-21:11:32    INFO: There has been an exception. Saving emergency checkpoint...
+2022-12-10-21:11:32    INFO: Calling: save_checkpoint...
+2022-12-10-21:11:32    INFO: Calling: create_directory...
+2022-12-10-21:11:32    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-12-10-21:11:32    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 189, in training_loop
+    self.train_epoch(epoch)
+  File "E:/papercode/MSPred/src/02_train.py", line 250, in train_epoch
+    tf_epochs = self.exp_params["training"]["tf_epochs"]
+  File "E:/papercode/MSPred/src/02_train.py", line 250, in train_epoch
+    tf_epochs = self.exp_params["training"]["tf_epochs"]
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_37_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 929, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 920, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.do_wait_suspend
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1147, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1162, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+
+
+
+2022-12-11-10:59:46    NEW_EXP: Starting training procedure
+2022-12-11-10:59:46    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-12-11-10:59:46    INFO: Initializing Trainer...
+2022-12-11-10:59:53    INFO: Calling: create_directory...
+2022-12-11-10:59:53    INFO: Calling: create_directory...
+2022-12-11-10:59:53    INFO: Calling: create_directory...
+2022-12-11-10:59:54    INFO: Calling: create_directory...
+2022-12-11-10:59:54    INFO: Calling: create_directory...
+2022-12-11-10:59:56    INFO: Loading dataset...
+2022-12-11-11:00:15    INFO:   --> Number of training sequences: 60000
+2022-12-11-11:00:15    INFO:   --> Number of validation sequences: 10000
+2022-12-11-11:00:17    INFO: Setting up model and optimizer
+2022-12-11-11:00:20    INFO: Calling: setup_model...
+2022-12-11-11:20:15    INFO: Model parameters initialized correctly
+2022-12-11-11:20:16    INFO: Calling: log_architecture...
+2022-12-11-11:20:17    INFO: Calling: setup_optimization...
+2022-12-11-11:20:21    INFO: Setting up Adam optimizer:
+2022-12-11-11:20:22    INFO:   --> LR: 0.0001
+2022-12-11-11:20:25    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-12-11-11:20:25    INFO:   --> Warmup Steps:  0
+2022-12-11-11:20:26    INFO:   --> Decay Steps:   [250]
+2022-12-11-11:20:26    INFO:   --> Factor:        0.5
+2022-12-11-11:20:47    INFO: Starting to train
+2022-12-11-11:20:52    INFO: Epoch 0/350
+2022-12-11-12:54:10    INFO: There has been an exception. Saving emergency checkpoint...
+2022-12-11-12:54:10    INFO: Calling: save_checkpoint...
+2022-12-11-12:54:10    INFO: Calling: create_directory...
+2022-12-11-12:54:10    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2022-12-11-12:54:10    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 189, in training_loop
+    self.train_epoch(epoch)
+  File "E:/papercode/MSPred/src/02_train.py", line 274, in train_epoch
+    teacher_force=teacher_force
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 84, in forward
+    pred_feats, out_dict = self.predict(
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 84, in forward
+    pred_feats, out_dict = self.predict(
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\_pydevd_bundle\pydevd_trace_dispatch.py", line 59, in trace_dispatch
+    return _trace_dispatch(py_db, frame, event, arg)
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1329, in _pydevd_bundle.pydevd_cython_win32_37_64.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1589, in _pydevd_bundle.pydevd_cython_win32_37_64.ThreadTracer.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.do_wait_suspend
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1147, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1162, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+
+
+
+2022-12-11-16:47:01    NEW_EXP: Starting training procedure
+2022-12-11-16:47:01    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-12-11-16:47:01    INFO: Initializing Trainer...
+2022-12-11-16:47:01    INFO: Calling: create_directory...
+2022-12-11-16:47:01    INFO: Calling: create_directory...
+2022-12-11-16:47:01    INFO: Calling: create_directory...
+2022-12-11-16:47:01    INFO: Calling: create_directory...
+2022-12-11-16:47:01    INFO: Calling: create_directory...
+2022-12-11-16:47:01    INFO: Loading dataset...
+2022-12-11-16:47:01    INFO:   --> Number of training sequences: 60000
+2022-12-11-16:47:01    INFO:   --> Number of validation sequences: 10000
+2022-12-11-16:47:01    INFO: Setting up model and optimizer
+2022-12-11-16:47:03    INFO: Calling: setup_model...
+2022-12-11-16:47:03    INFO: Model parameters initialized correctly
+2022-12-11-16:47:03    INFO: Calling: log_architecture...
+2022-12-11-16:47:03    INFO: Calling: setup_optimization...
+2022-12-11-16:47:03    INFO: Setting up Adam optimizer:
+2022-12-11-16:47:03    INFO:   --> LR: 0.0001
+2022-12-11-16:47:03    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-12-11-16:47:03    INFO:   --> Warmup Steps:  0
+2022-12-11-16:47:03    INFO:   --> Decay Steps:   [250]
+2022-12-11-16:47:03    INFO:   --> Factor:        0.5
+2022-12-11-16:47:03    INFO: Starting to train
+2022-12-11-16:47:03    INFO: Epoch 0/350
+
+
+
+2022-12-11-19:08:04    NEW_EXP: Starting training procedure
+2022-12-11-19:08:04    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-12-11-19:08:04    INFO: Initializing Trainer...
+2022-12-11-19:08:04    INFO: Calling: create_directory...
+2022-12-11-19:08:04    INFO: Calling: create_directory...
+2022-12-11-19:08:04    INFO: Calling: create_directory...
+2022-12-11-19:08:04    INFO: Calling: create_directory...
+2022-12-11-19:08:04    INFO: Calling: create_directory...
+2022-12-11-19:08:04    INFO: Loading dataset...
+2022-12-11-19:08:04    INFO:   --> Number of training sequences: 60000
+2022-12-11-19:08:04    INFO:   --> Number of validation sequences: 10000
+2022-12-11-19:08:04    INFO: Setting up model and optimizer
+2022-12-11-19:08:06    INFO: Calling: setup_model...
+2022-12-11-19:08:06    INFO: Model parameters initialized correctly
+2022-12-11-19:08:06    INFO: Calling: log_architecture...
+2022-12-11-19:08:06    INFO: Calling: setup_optimization...
+2022-12-11-19:08:06    INFO: Setting up Adam optimizer:
+2022-12-11-19:08:06    INFO:   --> LR: 0.0001
+2022-12-11-19:08:06    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-12-11-19:08:06    INFO:   --> Warmup Steps:  0
+2022-12-11-19:08:06    INFO:   --> Decay Steps:   [250]
+2022-12-11-19:08:06    INFO:   --> Factor:        0.5
+2022-12-11-19:08:06    INFO: Starting to train
+2022-12-11-19:08:06    INFO: Epoch 0/350
+
+
+
+2022-12-11-19:32:27    NEW_EXP: Starting training procedure
+2022-12-11-19:32:27    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-12-11-19:32:27    INFO: Initializing Trainer...
+2022-12-11-19:32:27    INFO: Calling: create_directory...
+2022-12-11-19:32:27    INFO: Calling: create_directory...
+2022-12-11-19:32:27    INFO: Calling: create_directory...
+2022-12-11-19:32:27    INFO: Calling: create_directory...
+2022-12-11-19:32:27    INFO: Calling: create_directory...
+2022-12-11-19:32:27    INFO: Loading dataset...
+2022-12-11-19:32:27    INFO:   --> Number of training sequences: 60000
+2022-12-11-19:32:27    INFO:   --> Number of validation sequences: 10000
+2022-12-11-19:32:27    INFO: Setting up model and optimizer
+2022-12-11-19:32:29    INFO: Calling: setup_model...
+2022-12-11-19:32:29    INFO: Model parameters initialized correctly
+2022-12-11-19:32:29    INFO: Calling: log_architecture...
+2022-12-11-19:32:29    INFO: Calling: setup_optimization...
+2022-12-11-19:32:29    INFO: Setting up Adam optimizer:
+2022-12-11-19:32:29    INFO:   --> LR: 0.0001
+2022-12-11-19:32:29    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-12-11-19:32:29    INFO:   --> Warmup Steps:  0
+2022-12-11-19:32:29    INFO:   --> Decay Steps:   [250]
+2022-12-11-19:32:29    INFO:   --> Factor:        0.5
+2022-12-11-19:32:29    INFO: Starting to train
+2022-12-11-19:32:29    INFO: Epoch 0/350
+
+
+
+2022-12-11-20:31:35    NEW_EXP: Starting training procedure
+2022-12-11-20:31:35    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-12-11-20:31:35    INFO: Initializing Trainer...
+2022-12-11-20:31:35    INFO: Calling: create_directory...
+2022-12-11-20:31:35    INFO: Calling: create_directory...
+2022-12-11-20:31:35    INFO: Calling: create_directory...
+2022-12-11-20:31:35    INFO: Calling: create_directory...
+2022-12-11-20:31:35    INFO: Calling: create_directory...
+2022-12-11-20:31:35    INFO: Loading dataset...
+2022-12-11-20:31:35    INFO:   --> Number of training sequences: 60000
+2022-12-11-20:31:35    INFO:   --> Number of validation sequences: 10000
+2022-12-11-20:31:35    INFO: Setting up model and optimizer
+2022-12-11-20:31:36    INFO: Calling: setup_model...
+2022-12-11-20:31:37    INFO: Model parameters initialized correctly
+2022-12-11-20:31:37    INFO: Calling: log_architecture...
+2022-12-11-20:31:37    INFO: Calling: setup_optimization...
+2022-12-11-20:31:37    INFO: Setting up Adam optimizer:
+2022-12-11-20:31:37    INFO:   --> LR: 0.0001
+2022-12-11-20:31:37    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-12-11-20:31:37    INFO:   --> Warmup Steps:  0
+2022-12-11-20:31:37    INFO:   --> Decay Steps:   [250]
+2022-12-11-20:31:37    INFO:   --> Factor:        0.5
+2022-12-11-20:31:37    INFO: Starting to train
+2022-12-11-20:31:37    INFO: Epoch 0/350
+2022-12-11-21:26:07    INFO: Log data train iteration 0:  loss=0.28613;
+2022-12-11-21:27:44    INFO: There has been an exception. Saving emergency checkpoint...
+2022-12-11-21:27:44    INFO: Calling: save_checkpoint...
+2022-12-11-21:27:44    INFO: Calling: create_directory...
+
+
+
+2022-12-26-16:28:29    NEW_EXP: Starting training procedure
+2022-12-26-16:28:29    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2022-12-26-16:28:30    INFO: Initializing Trainer...
+2022-12-26-16:28:37    INFO: Calling: create_directory...
+2022-12-26-16:28:37    INFO: Calling: create_directory...
+2022-12-26-16:28:37    INFO: Calling: create_directory...
+2022-12-26-16:28:38    INFO: Calling: create_directory...
+2022-12-26-16:28:39    INFO: Calling: create_directory...
+2022-12-26-16:28:42    INFO: Loading dataset...
+2022-12-26-16:34:53    INFO:   --> Number of training sequences: 60000
+2022-12-26-16:34:53    INFO:   --> Number of validation sequences: 10000
+2022-12-26-16:35:08    INFO: Setting up model and optimizer
+2022-12-26-16:35:11    INFO: Calling: setup_model...
+2022-12-26-16:58:01    INFO: Model parameters initialized correctly
+2022-12-26-16:58:01    INFO: Calling: log_architecture...
+2022-12-26-16:58:01    INFO: Calling: setup_optimization...
+2022-12-26-16:58:08    INFO: Setting up Adam optimizer:
+2022-12-26-16:58:08    INFO:   --> LR: 0.0001
+2022-12-26-16:58:20    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2022-12-26-16:58:20    INFO:   --> Warmup Steps:  0
+2022-12-26-16:58:20    INFO:   --> Decay Steps:   [250]
+2022-12-26-16:58:21    INFO:   --> Factor:        0.5
+2022-12-26-16:58:44    INFO: Starting to train
+2022-12-26-16:58:57    INFO: Epoch 0/350
+2022-12-26-18:43:07    INFO: There has been an exception. Saving emergency checkpoint...
+2022-12-26-18:43:07    INFO: Calling: save_checkpoint...
+2022-12-26-18:43:07    INFO: Calling: create_directory...
+
+
+
+2023-01-07-12:32:47    NEW_EXP: Starting training procedure
+2023-01-07-12:32:48    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2023-01-07-12:32:49    INFO: Initializing Trainer...
+2023-01-07-12:32:59    INFO: Calling: create_directory...
+2023-01-07-12:32:59    INFO: Calling: create_directory...
+2023-01-07-12:33:00    INFO: Calling: create_directory...
+2023-01-07-12:33:00    INFO: Calling: create_directory...
+2023-01-07-12:33:00    INFO: Calling: create_directory...
+2023-01-07-12:33:02    INFO: Loading dataset...
+2023-01-07-12:35:52    INFO:   --> Number of training sequences: 60000
+2023-01-07-12:35:53    INFO:   --> Number of validation sequences: 10000
+2023-01-07-12:36:04    INFO: Setting up model and optimizer
+2023-01-07-12:42:55    INFO: Calling: setup_model...
+2023-01-07-12:45:36    INFO: Model parameters initialized correctly
+2023-01-07-12:45:36    INFO: Calling: log_architecture...
+2023-01-07-12:45:36    INFO: Calling: setup_optimization...
+2023-01-07-12:45:37    INFO: Setting up Adam optimizer:
+2023-01-07-12:45:37    INFO:   --> LR: 0.0001
+2023-01-07-12:45:38    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2023-01-07-12:45:38    INFO:   --> Warmup Steps:  0
+2023-01-07-12:45:38    INFO:   --> Decay Steps:   [250]
+2023-01-07-12:45:38    INFO:   --> Factor:        0.5
+2023-01-07-12:45:42    INFO: Starting to train
+2023-01-07-12:45:48    INFO: Epoch 0/350
+2023-01-07-12:49:42    INFO: There has been an exception. Saving emergency checkpoint...
+2023-01-07-12:49:42    INFO: Calling: save_checkpoint...
+2023-01-07-12:49:42    INFO: Calling: create_directory...
+2023-01-07-12:49:42    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2023-01-07-12:49:42    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 189, in training_loop
+    self.train_epoch(epoch)
+  File "E:/papercode/MSPred/src/02_train.py", line 262, in train_epoch
+    for i, inputs_ in progress_bar:
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\tqdm\std.py", line 1195, in __iter__
+    for obj in iterable:
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\utils\data\dataloader.py", line 681, in __next__
+    data = self._next_data()
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\utils\data\dataloader.py", line 721, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\utils\data\_utils\fetch.py", line 49, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\utils\data\_utils\fetch.py", line 49, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "E:\papercode\MSPred\src\data\moving_mnist.py", line 167, in __getitem__
+    positions.append([(np.flip(p) + digit_size/2) / self.img_size for p in next_poses])
+  File "E:\papercode\MSPred\src\data\moving_mnist.py", line 167, in __getitem__
+    positions.append([(np.flip(p) + digit_size/2) / self.img_size for p in next_poses])
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1589, in _pydevd_bundle.pydevd_cython_win32_37_64.ThreadTracer.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 929, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 920, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.do_wait_suspend
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1147, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1162, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+
+
+
+2023-01-07-12:50:53    NEW_EXP: Starting training procedure
+2023-01-07-12:50:53    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2023-01-07-12:50:53    INFO: Initializing Trainer...
+2023-01-07-12:50:53    INFO: Calling: create_directory...
+2023-01-07-12:50:53    INFO: Calling: create_directory...
+2023-01-07-12:50:53    INFO: Calling: create_directory...
+2023-01-07-12:50:53    INFO: Calling: create_directory...
+2023-01-07-12:50:53    INFO: Calling: create_directory...
+2023-01-07-12:50:53    INFO: Loading dataset...
+2023-01-07-12:50:53    INFO:   --> Number of training sequences: 60000
+2023-01-07-12:50:53    INFO:   --> Number of validation sequences: 10000
+2023-01-07-12:50:53    INFO: Setting up model and optimizer
+2023-01-07-12:50:53    INFO: Calling: setup_model...
+2023-01-07-12:50:53    INFO: Model parameters initialized correctly
+2023-01-07-12:50:53    INFO: Calling: log_architecture...
+2023-01-07-12:50:54    INFO: Calling: setup_optimization...
+2023-01-07-12:50:54    INFO: Setting up Adam optimizer:
+2023-01-07-12:50:54    INFO:   --> LR: 0.0001
+2023-01-07-12:50:54    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2023-01-07-12:50:54    INFO:   --> Warmup Steps:  0
+2023-01-07-12:50:54    INFO:   --> Decay Steps:   [250]
+2023-01-07-12:50:54    INFO:   --> Factor:        0.5
+2023-01-07-12:50:54    INFO: Starting to train
+2023-01-07-12:50:54    INFO: Epoch 0/350
+2023-01-07-13:22:02    INFO: There has been an exception. Saving emergency checkpoint...
+2023-01-07-13:22:02    INFO: Calling: save_checkpoint...
+2023-01-07-13:22:02    INFO: Calling: create_directory...
+2023-01-07-13:22:02    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2023-01-07-13:22:02    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 189, in training_loop
+    self.train_epoch(epoch)
+  File "E:/papercode/MSPred/src/02_train.py", line 274, in train_epoch
+    teacher_force=teacher_force
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 88, in forward
+    context=context
+  File "E:\papercode\MSPred\src\models\VideoPred_SpatioTempHierarchLSTM.py", line 82, in predict
+    pred_outputs.append(pred_feats) # pred_feats = [16 * 128 * 16 * 16,16 * 256 * 8 * 8,16 * 512 * 4 * 4]
+  File "E:\papercode\MSPred\src\models\VideoPred_SpatioTempHierarchLSTM.py", line 82, in predict
+    pred_outputs.append(pred_feats) # pred_feats = [16 * 128 * 16 * 16,16 * 256 * 8 * 8,16 * 512 * 4 * 4]
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\_pydevd_bundle\pydevd_trace_dispatch.py", line 59, in trace_dispatch
+    return _trace_dispatch(py_db, frame, event, arg)
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1329, in _pydevd_bundle.pydevd_cython_win32_37_64.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1589, in _pydevd_bundle.pydevd_cython_win32_37_64.ThreadTracer.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_37_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_37_64.PyDBFrame.do_wait_suspend
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1147, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "F:\DevelopSoftware\Pycharm\plugins\python\helpers\pydev\pydevd.py", line 1162, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+
+
+
+2023-01-07-18:01:01    NEW_EXP: Starting training procedure
+2023-01-07-18:01:01    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2023-01-07-18:01:01    INFO: Initializing Trainer...
+2023-01-07-18:01:01    INFO: Calling: create_directory...
+2023-01-07-18:01:01    INFO: Calling: create_directory...
+2023-01-07-18:01:01    INFO: Calling: create_directory...
+2023-01-07-18:01:01    INFO: Calling: create_directory...
+2023-01-07-18:01:01    INFO: Calling: create_directory...
+2023-01-07-18:01:02    INFO: Loading dataset...
+2023-01-07-18:01:02    INFO:   --> Number of training sequences: 60000
+2023-01-07-18:01:02    INFO:   --> Number of validation sequences: 10000
+2023-01-07-18:01:02    INFO: Setting up model and optimizer
+2023-01-07-18:01:03    INFO: Calling: setup_model...
+2023-01-07-18:01:03    INFO: Model parameters initialized correctly
+2023-01-07-18:01:03    INFO: Calling: log_architecture...
+2023-01-07-18:01:03    INFO: Calling: setup_optimization...
+2023-01-07-18:01:03    INFO: Setting up Adam optimizer:
+2023-01-07-18:01:03    INFO:   --> LR: 0.0001
+2023-01-07-18:01:03    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2023-01-07-18:01:03    INFO:   --> Warmup Steps:  0
+2023-01-07-18:01:03    INFO:   --> Decay Steps:   [250]
+2023-01-07-18:01:03    INFO:   --> Factor:        0.5
+2023-01-07-18:01:03    INFO: Starting to train
+2023-01-07-18:01:03    INFO: Epoch 0/350
+
+
+
+2023-01-19-19:56:25    NEW_EXP: Starting training procedure
+2023-01-19-19:56:25    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2023-01-19-19:56:25    INFO: Initializing Trainer...
+2023-01-19-19:56:27    INFO: Calling: create_directory...
+2023-01-19-19:56:27    INFO: Calling: create_directory...
+2023-01-19-19:56:27    INFO: Calling: create_directory...
+2023-01-19-19:56:27    INFO: Calling: create_directory...
+2023-01-19-19:56:27    INFO: Calling: create_directory...
+2023-01-19-19:56:27    INFO: Loading dataset...
+
+
+
+2023-01-21-09:41:43    NEW_EXP: Starting training procedure
+2023-01-21-09:41:43    INFO: Using git sha: 591962560353886ad2345132a763979805cc9aa7
+2023-01-21-09:41:43    INFO: Initializing Trainer...
+2023-01-21-09:41:43    INFO: Calling: create_directory...
+2023-01-21-09:41:43    INFO: Calling: create_directory...
+2023-01-21-09:41:43    INFO: Calling: create_directory...
+2023-01-21-09:41:43    INFO: Calling: create_directory...
+2023-01-21-09:41:43    INFO: Calling: create_directory...
+2023-01-21-09:41:43    INFO: Loading dataset...
+2023-01-21-09:41:43    INFO:   --> Number of training sequences: 60000
+2023-01-21-09:41:43    INFO:   --> Number of validation sequences: 10000
+2023-01-21-09:41:43    INFO: Setting up model and optimizer
+2023-01-21-09:41:45    INFO: Calling: setup_model...
+2023-01-21-09:41:45    INFO: Model parameters initialized correctly
+2023-01-21-09:41:45    INFO: Calling: log_architecture...
+2023-01-21-09:41:45    INFO: Calling: setup_optimization...
+2023-01-21-09:41:45    INFO: Setting up Adam optimizer:
+2023-01-21-09:41:45    INFO:   --> LR: 0.0001
+2023-01-21-09:41:45    INFO: Setting up MultiStep/Warmup LR-Scheduler:
+2023-01-21-09:41:45    INFO:   --> Warmup Steps:  0
+2023-01-21-09:41:45    INFO:   --> Decay Steps:   [250]
+2023-01-21-09:41:45    INFO:   --> Factor:        0.5
+2023-01-21-09:41:45    INFO: Starting to train
+2023-01-21-09:41:45    INFO: Epoch 0/350
+2023-01-21-09:41:55    INFO: Log data train iteration 0:  loss=0.28613;
+2023-01-21-09:42:02    INFO: There has been an exception. Saving emergency checkpoint...
+2023-01-21-09:42:02    INFO: Calling: save_checkpoint...
+2023-01-21-09:42:02    INFO: Calling: create_directory...
+2023-01-21-09:42:02    INFO:   --> Saved emergency checkpoint emergency_checkpoint_epoch_0.pth
+2023-01-21-09:42:02    ERROR: Traceback (most recent call last):
+  File "E:\papercode\MSPred\src\lib\setup_model.py", line 78, in try_call_except
+    return f(*args, **kwargs)
+  File "E:/papercode/MSPred/src/02_train.py", line 189, in training_loop
+    self.train_epoch(epoch)
+  File "E:/papercode/MSPred/src/02_train.py", line 274, in train_epoch
+    teacher_force=teacher_force
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\VideoPred_HierarchModel.py", line 88, in forward
+    context=context
+  File "E:\papercode\MSPred\src\models\VideoPred_SpatioTempHierarchLSTM.py", line 81, in predict
+    pred_feats = cur_model(feats_, hidden_state=cur_model.hidden[0])
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\ConvLSTM.py", line 238, in forward
+    self.hidden[i] = self.cell_list[i](x=cur_input, state=self.hidden[i])
+  File "D:\Software\ApplicationSoftware\Anaconda\envs\CrevNetTrain\lib\site-packages\torch\nn\modules\module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "E:\papercode\MSPred\src\models\ConvLSTM.py", line 75, in forward
+    o = torch.sigmoid(cc_o)
+RuntimeError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 8.00 GiB total capacity; 7.21 GiB already allocated; 0 bytes free; 7.28 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+

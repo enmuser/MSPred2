@@ -103,7 +103,7 @@ class Trainer:
         epoch = 0
         torch.backends.cudnn.fastest = True
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
+        print_(f"device...: {self.device}")
         # loading model
         model = setup_model.setup_model(exp_params=self.exp_params)
         utils.log_architecture(model, exp_path=self.exp_path)
